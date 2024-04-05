@@ -1,42 +1,44 @@
 import { Box, Button, Text } from '@chakra-ui/react';
-import { doSignInWithGoogle } from '../../firebase/auth';
 import { useEffect, useState } from 'react';
-import useAuthStore from '../../store/authStore';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Login = () => {
-  const { userLoggedIn, initializeUser } = useAuthStore();
-  const [isSigningIn, setIsSigningIn] = useState(false);
   const [loginStatus, setLoginStatus] = useState('');
+  const [token, setToken] = useState(null);
+  const { loginWithRedirect, user, getAccessTokenSilently, isAuthenticated } =
+    useAuth0();
 
   useEffect(() => {
-    if (userLoggedIn === true) {
+    if (user) {
       setLoginStatus('Logged in successfully!');
-    } else if (userLoggedIn === false) {
-      setLoginStatus('Failed to log in.');
     } else {
       setLoginStatus('');
     }
-  }, [userLoggedIn]);
+  }, [user, token]);
 
-  const doSubmit = async (e) => {
-    e.preventDefault();
-    if (!isSigningIn) {
-      setIsSigningIn(true);
+  useEffect(() => {
+    const getToken = async () => {
       try {
-        doSignInWithGoogle();
-        setIsSigningIn(false);
-        initializeUser(); // Update userLoggedIn state after successful sign-in
+        const token = await getAccessTokenSilently();
+        setToken(token);
       } catch (error) {
-        setIsSigningIn(false);
-        console.error('Sign-in error:', error);
+        console.error('Error fetching token:', error);
       }
+    };
+    if (isAuthenticated) {
+      getToken();
     }
-  };
+  }, [isAuthenticated, getAccessTokenSilently]);
 
   return (
     <Box>
       {loginStatus && <Text>{loginStatus}</Text>}
-      <Button colorScheme={'blue'} variant={'solid'} onClick={doSubmit}>
+      {user && <Text>{user.name}</Text>}
+      <Button
+        colorScheme={'blue'}
+        variant={'solid'}
+        onClick={() => loginWithRedirect()}
+      >
         Sign In With Google
       </Button>
     </Box>
