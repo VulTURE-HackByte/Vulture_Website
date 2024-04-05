@@ -1,16 +1,16 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-
 const firebaseConfig = {
-  apiKey: 'AIzaSyA-iSf7GGsavzfxcOgUcCKPKbWpGfMWFWA',
-  authDomain: 'vulture-89adb.firebaseapp.com',
-  projectId: 'vulture-89adb',
-  storageBucket: 'vulture-89adb.appspot.com',
-  messagingSenderId: '633000927477',
-  appId: '1:633000927477:web:9898c5046a0026cda925bc',
-  measurementId: 'G-5665GX9RMW',
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
