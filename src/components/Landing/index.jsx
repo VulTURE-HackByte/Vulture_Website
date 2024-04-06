@@ -1,6 +1,14 @@
 'use client';
 
-import { Box, Flex, Stack, Image, Text, Button } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  Stack,
+  Image,
+  Text,
+  Button,
+  useToast,
+} from '@chakra-ui/react';
 import Features from '../Features';
 import Footer from '../Footer';
 import useAuthStore from '../../store/authStore';
@@ -10,7 +18,7 @@ export default function Landing() {
     isAuth: state.isAuth,
   }));
   const navigate = useNavigate();
-
+  const toast = useToast();
   return (
     <Box>
       <Flex
@@ -41,13 +49,26 @@ export default function Landing() {
             fontWeight={600}
             color={'black'}
             bg={'#b9ff66'}
-            // href={'/input'}
+            cursor={'pointer'}
+            cli
+            onClick={() => {
+              isAuth
+                ? navigate('/input')
+                : toast({
+                    title: 'Error',
+                    description: 'Please login to perform scans',
+                    status: 'error',
+                    duration: 2000,
+                    variant: 'subtle',
+                    isClosable: true,
+                    position: 'top',
+                  });
+            }}
             _hover={{
               bg: '#b9ff66',
             }}
             h={'40px'}
             w={'50%'}
-            isDisabled={isAuth ? true : false}
           >
             Perform Scans
           </Button>

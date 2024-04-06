@@ -32,7 +32,8 @@ export default function InputScan() {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
+    event.preventDefault();
+    // Prevent default form submission behavior
     console.log('Selected Options:', selectedOptions); // Example: Log selected options
     // Handle form submission logic here (e.g., send data to server)
   };
@@ -138,9 +139,10 @@ export default function InputScan() {
           display={{ base: 'inline-flex' }}
           fontSize={'md'}
           fontWeight={600}
+          onClick={handleSubmit}
           color={'white'}
           bg={'black'}
-          href={'/input'}
+          cursor={'pointer'}
           _hover={{
             bg: '#333333',
           }}

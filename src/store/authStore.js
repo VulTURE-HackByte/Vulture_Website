@@ -1,21 +1,34 @@
 import { create } from 'zustand';
 
 const useAuthStore = create((set) => ({
-  currentUser: null,
-  userLoggedIn: false,
-  loading: true,
-  isAuth: false,
-  toggleAuth: () => {
+  userName: '',
+
+  userEmail: '',
+
+  setUserName: (name) => {
     set((state) => {
-      return { ...state, isAuth: !state.isAuth };
+      return { ...state, userName: name };
     });
   },
-  initializeUser: async (user) => {
-    if (user) {
-      set({ currentUser: { ...user }, userLoggedIn: true, loading: false });
-    } else {
-      set({ currentUser: null, userLoggedIn: false, loading: false });
-    }
+
+  setUserEmail: (email) => {
+    set((state) => {
+      return { ...state, userEmail: email };
+    });
+  },
+
+  isAuth: false,
+
+  addAuth: () => {
+    set((state) => {
+      return { ...state, isAuth: true };
+    });
+  },
+
+  removeAuth: () => {
+    set((state) => {
+      return { ...state, isAuth: false };
+    });
   },
 }));
 

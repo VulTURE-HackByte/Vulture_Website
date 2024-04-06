@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   useToast,
@@ -19,6 +19,7 @@ import axios from 'axios';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
 import useAuthStore from '../../store/authStore';
+import { Spinner } from '@chakra-ui/react';
 
 export default function Signup() {
   const [loading, setLoading] = useState(false);
@@ -32,6 +33,7 @@ export default function Signup() {
   const { name, email, password, confirmPassword } = signupData;
   const toast = useToast();
   const navigate = useNavigate();
+
   const onChange = (e) => {
     setSignupData((prevState) => ({
       ...prevState,
@@ -39,22 +41,30 @@ export default function Signup() {
     }));
   };
 
-  const { toggleAuth } = useAuthStore((state) => ({
-    isAuth: state.isAuth,
-    toggleAuth: state.toggleAuth,
+  useEffect(() => {
+    if (loading) {
+      <Spinner />;
+    }
+  }, [loading]);
+
+  const { addAuth, setUserEmail, setUserName } = useAuthStore((state) => ({
+    addAuth: state.addAuth,
+    setUserEmail: state.setUserEmail,
+    setUserName: state.setUserName,
   }));
 
   const onSubmit = (e) => {
+    setLoading(true);
     e.preventDefault();
     if (!(email && password)) {
-      toast({
-        title: 'Incomplete Entries',
-        description: 'Please enter both email and password',
-        status: 'error',
-        duration: 2000,
-        isClosable: true,
-        position: 'top',
-      });
+      // toast({
+      //   // title: 'Incomplete Entries',
+      //   // description: 'Please enter both email and password',
+      //   // status: 'error',
+      //   // duration: 2000,
+      //   // isClosable: true,
+      //   // position: 'top',
+      // });
       setLoading(false);
     }
 
@@ -79,10 +89,36 @@ export default function Signup() {
       try {
         const response = await axios.request(config);
         console.log(JSON.stringify(response.data));
-        toggleAuth();
+
+        addAuth();
         navigate('/');
+
+        localStorage.setItem('email', email);
+        localStorage.setItem('name', response.data.name);
+        localStorage.setItem('token', response.data.token);
+
+        setUserEmail(email);
+        setUserName(response.data.name);
+        setLoading(false);
       } catch (error) {
-        console.log(error);
+        setLoading(false);
+
+        const parser = new DOMParser();
+        const htmlDoc = parser.parseFromString(
+          error.response.data,
+          'text/html'
+        );
+        const errorMessage = htmlDoc.body.textContent.trim();
+
+        toast({
+          title: 'Error',
+          description: errorMessage.slice(7, 27),
+          status: 'error',
+          duration: 2000,
+          variant: 'subtle',
+          isClosable: true,
+          position: 'top',
+        });
       }
     }
 
