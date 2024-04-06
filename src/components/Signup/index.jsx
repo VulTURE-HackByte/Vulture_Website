@@ -119,7 +119,7 @@ export default function Signup() {
                   <Box bg="#ffffff" borderRadius="0.4rem">
                     <Input
                       type="text"
-                      focusBorderColor="#ce1567"
+                      focusBorderColor="#f3d340"
                       bg="#ecedf6"
                       id="name"
                       name="name"
@@ -129,23 +129,6 @@ export default function Signup() {
                     />
                   </Box>
                 </Box>
-                {/* <Box mb={['1rem', '2rem']}>
-                    <Text mb="0.5rem" fontSize={['1.1rem', '1.2rem']}>
-                      Phone:{' '}
-                    </Text>
-                    <Box bg="#ffffff" borderRadius="0.4rem">
-                      <Input
-                        type="text"
-                        focusBorderColor="#ce1567"
-                        bg="#ecedf6"
-                        id="phone"
-                        name="phone"
-                        value={phone}
-                        placeholder="Phone..."
-                        onChange={onChange}
-                      />
-                    </Box>
-                  </Box> */}
               </Flex>
               <Box mb={['1rem', '2rem']}>
                 <Text mb="0.5rem" fontSize={['1.1rem', '1.2rem']}>
@@ -154,7 +137,7 @@ export default function Signup() {
                 <Box bg="#ffffff" borderRadius="0.4rem">
                   <Input
                     type="email"
-                    focusBorderColor="#ce1567"
+                    focusBorderColor="#f3d340"
                     bg="#ecedf6"
                     id="email"
                     name="email"
@@ -172,7 +155,7 @@ export default function Signup() {
                   <InputGroup>
                     <Input
                       type={showPassword ? 'text' : 'password'}
-                      focusBorderColor="#ce1567"
+                      focusBorderColor="#f3d340"
                       bg="#ecedf6"
                       id="password"
                       name="password"
@@ -188,12 +171,12 @@ export default function Signup() {
                       {showPassword ? (
                         <BiHide
                           style={{ width: '20px', height: '20px' }}
-                          color="#3d3d3d"
+                          color="#f3d340"
                         />
                       ) : (
                         <BiShow
                           style={{ width: '20px', height: '20px' }}
-                          color="#3d3d3d"
+                          color="#f3d340"
                         />
                       )}
                     </InputRightElement>
@@ -208,7 +191,7 @@ export default function Signup() {
                   <InputGroup>
                     <Input
                       type={showPassword ? 'text' : 'password'}
-                      focusBorderColor="#ce1567"
+                      focusBorderColor="#f3d340"
                       bg="#ecedf6"
                       id="confirmPassword"
                       name="confirmPassword"
@@ -224,12 +207,12 @@ export default function Signup() {
                       {showPassword ? (
                         <BiHide
                           style={{ width: '20px', height: '20px' }}
-                          color="#3d3d3d"
+                          color="#f3d340"
                         />
                       ) : (
                         <BiShow
                           style={{ width: '20px', height: '20px' }}
-                          color="#3d3d3d"
+                          color="#f3d340"
                         />
                       )}
                     </InputRightElement>
@@ -248,7 +231,7 @@ export default function Signup() {
                     mt={['1rem', '']}
                     px="4rem"
                     fontSize="1rem"
-                    bg="#ce1567"
+                    bg="#f3d340"
                     color="white"
                     _hover={{
                       bg: '',
@@ -269,7 +252,7 @@ export default function Signup() {
           <Text
             textAlign="center"
             fontSize={['1.1rem', '1.2rem']}
-            color="#ce1567"
+            color="#f3d340"
             fontWeight="600"
           >
             <Link to="/login">Log In Now</Link>

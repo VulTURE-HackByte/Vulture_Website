@@ -9,6 +9,7 @@ import {
   Checkbox,
   Input,
   Button,
+  Image,
 } from '@chakra-ui/react';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -19,9 +20,10 @@ export default function InputScan() {
   const [targetUri, setTargetUri] = useState('');
   const { user } = useAuthStore();
   const navigate = useNavigate();
+  const [data, setData] = useState(null);
 
   useEffect(() => {
-    if (!user) {
+    if (user) {
       navigate('/login');
     }
   }, [user, navigate]);
@@ -42,9 +44,9 @@ export default function InputScan() {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
-    console.log('Selected Options:', selectedOptions); // Example: Log selected options
-    // Handle form submission logic here (e.g., send data to server)
+    event.preventDefault();
+    console.log('Selected Options:', selectedOptions);
+    setData({ targetUri, selectedOptions });
   };
 
   return (
@@ -60,7 +62,6 @@ export default function InputScan() {
         <Text
           lineHeight={1.1}
           fontSize={{ base: '5vw', md: '28px', lg: '32px' }}
-          //   bg={'#b9ff66'}
           px={'4px'}
           borderRadius={'5px'}
           fontWeight={650}
@@ -71,6 +72,7 @@ export default function InputScan() {
         <Text
           fontSize={{ base: '1.7vw', md: '1.2vw' }}
           w={{ base: '90%', md: '65%' }}
+          lineHeight={1.1}
         >
           Use custom scans leveraging best cybersecurity tools to get the most
           easy-to-comprehend analysis of your sites and make your pen-testing
@@ -78,30 +80,51 @@ export default function InputScan() {
         </Text>
       </Flex>
       <FormControl
+        pos={'relative'}
         mx={'auto'}
         onSubmit={handleSubmit}
         w={{ base: '90%', md: '80%' }}
-        bg={'#b9ff66'}
+        bg={'#f3d340'}
         borderRadius={'10px'}
         py={'15px'}
         px={'30px'}
         gap={'20px'}
-        borderBottom={'4px solid #000'}
+        border={'2px solid #000'}
+        borderBottom={'7px solid #000'}
+        mb={'32px'}
       >
+        <Image
+          src={'../../src/assets/star.png'}
+          w={{ base: '32px' }}
+          pos={'absolute'}
+          top={'-5%'}
+          left={'-1.5%'}
+        />
         <Box>
-          <Text>Select options:</Text>
+          <Text fontSize={{ base: '1.7vw', md: '2vw' }} fontWeight={600}>
+            Select options:
+          </Text>
           <FormLabel>
-            <Text fontSize={{ base: '0.8rem', md: '1rem', lg: '1.6vw' }}>
-              Enter target URL
+            <Text
+              fontSize={{ base: '0.8rem', md: '1rem', lg: '1.4vw' }}
+              fontWeight={600}
+            >
+              Enter target URL here :-
             </Text>
             <Input
               type="text"
               value={targetUri}
               checked={selectedOptions.includes(targetUri)}
+              _hover={{ border: '2px solid #000' }}
+              _active={{ border: '2px solid #000' }}
               bg={'#fff'}
               onChange={handleInputChange}
+              border={'2px solid #000'}
+              borderRadius={'0px'}
+              boxShadow={'7px 7px 0px 0px #0B2447'}
               w={'40%'}
               mr={'20px'}
+              mb={'12px'}
             />
           </FormLabel>
           <FormLabel>
@@ -150,17 +173,42 @@ export default function InputScan() {
           fontWeight={600}
           color={'white'}
           bg={'black'}
-          href={'/input'}
           _hover={{
             bg: '#333333',
           }}
           h={'40px'}
           w={'25%'}
-          isDisabled={targetUri && selectedOptions ? false : true}
+          onSubmit={handleSubmit}
+          isDisabled={targetUri && selectedOptions.length > 0 ? false : true}
         >
           Submit
         </Button>
       </FormControl>
+      <Flex
+        mx={'auto'}
+        w={{ base: '90%', md: '80%' }}
+        bg={'#f3d340'}
+        borderRadius={'10px'}
+        py={'15px'}
+        px={'30px'}
+        display={selectedOptions.length > 0 && data ? 'flex' : 'none'}
+        gap={'20px'}
+        border={'2px solid #000'}
+        borderBottom={'7px solid #000'}
+      >
+        {selectedOptions.length > 0 && data ? (
+          <Text fontSize={{ base: '1.7vw', md: '2vw' }} fontWeight={600}>
+            Report:
+            {selectedOptions.map((option) => (
+              <Text key={option} fontWeight={400}>
+                {option}
+              </Text>
+            ))}
+          </Text>
+        ) : (
+          <></>
+        )}
+      </Flex>
     </Box>
   );
 }

@@ -1,8 +1,6 @@
 'use client';
 
 import { Box, Flex, Stack, Image, Text, Button } from '@chakra-ui/react';
-import Features from '../Features';
-import Footer from '../Footer';
 import useAuthStore from '../../store/authStore';
 
 export default function Landing() {
@@ -12,10 +10,11 @@ export default function Landing() {
     <Box>
       <Flex
         w={'100%'}
-        justify={'space-evenly'}
+        justify={'center'}
         flexDirection={{ base: 'column', md: 'row' }}
         align={'center'}
-        pt={{ base: '50px', md: '20px' }}
+        py={'40px'}
+        bg={'#f0eff5'}
       >
         <Stack w={{ base: '90%', md: '40%' }} gap={'20px'}>
           <Text
@@ -35,29 +34,28 @@ export default function Landing() {
             mt={'10px'}
             display={{ base: 'inline-flex' }}
             fontSize={'md'}
-            fontWeight={600}
+            fontWeight={620}
             color={'black'}
-            bg={'#b9ff66'}
+            bg={'#f3d340'}
             href={'/input'}
             _hover={{
-              bg: '#b9ff66',
+              bg: '#f3d340',
             }}
-            h={'40px'}
-            w={'50%'}
+            h={'52px'}
+            w={'60%'}
+            border={'2px solid #000'}
             isDisabled={user ? false : true}
           >
             Perform Scans
           </Button>
         </Stack>
         <Image
-          src="../../src/assets/landing.png"
-          w={{ base: '60vw', md: '30%' }}
+          src="../../src/assets/illustr.png"
+          w={{ base: '60vw', md: '40%' }}
           aspectRatio={'1/1'}
           pt={{ base: '50px', md: '0px' }}
         />
       </Flex>
-      <Features />
-      <Footer />
     </Box>
   );
 }

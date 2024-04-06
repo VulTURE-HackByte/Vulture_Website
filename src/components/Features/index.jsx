@@ -6,7 +6,7 @@ const features = [
   {
     title: 'Automated Security Scanning',
     desc: 'Vulture ZAP automates security scanning processes using OWASP ZAP, swiftly identifying potential vulnerabilities in web applications.',
-    color: '#b9ff66',
+    color: '#f3d340',
   },
   {
     title: 'Comprehensive Scans',
@@ -29,11 +29,12 @@ const FeatureCard = (props) => {
   return (
     <Flex
       w={{ base: '90%', md: '48%' }}
-      bg={'#b9ff66'}
+      bg={'#f3d340'}
       borderRadius={'10px'}
       p={'15px'}
       gap={'20px'}
-      borderBottom={'4px solid #000'}
+      border={'2px solid #000'}
+      borderBottom={'7px solid #000'}
     >
       <Stack justify={'start'}>
         <Text
@@ -57,19 +58,24 @@ const FeatureCard = (props) => {
 
 export default function Features() {
   return (
-    <Box>
-      <Stack pt={'40px'} w={'100%'}>
+    <Box bg={'#f0eff5'}>
+      <Stack py={'60px'} w={'100%'}>
         <Flex
           w={{ base: '90%', md: '80%' }}
           mx={'auto'}
-          pb={'24px'}
           gap={'20px'}
           align={'center'}
+          bg={'#f3d340'}
+          border={'2px solid #000'}
+          borderRadius={'0px'}
+          boxShadow={'7px 7px 0px 0px #0B2447'}
+          mb={'32px'}
+          p={'10px'}
+          _hover={{ boxShadow: '-7px -7px 0px 0px #0B2447' }}
         >
           <Text
             lineHeight={1.1}
             fontSize={{ base: '5vw', md: '28px', lg: '32px' }}
-            // bg={'#b9ff66'}
             px={'4px'}
             borderRadius={'5px'}
             fontWeight={650}
@@ -80,6 +86,7 @@ export default function Features() {
           <Text
             fontSize={{ base: '1.7vw', md: '1.2vw' }}
             w={{ base: '90%', md: '65%' }}
+            lineHeight={1.1}
           >
             With VulTURE, leverage best cybersecurity and AI tools to get the
             most easy-to-comprehend analysis of your sites and make your

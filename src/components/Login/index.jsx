@@ -102,7 +102,7 @@ export default function Login() {
           </Text>
           <Flex
             direction="column"
-            border="2px solid #ce1567"
+            border="2px solid #f3d340"
             w={['20rem', '27rem']}
             px={['1rem', '2rem']}
             py={['1rem', '2rem']}
@@ -117,7 +117,7 @@ export default function Login() {
                 <Box bg="#ffffff" borderRadius="0.4rem">
                   <Input
                     type="email"
-                    focusBorderColor="#ce1567"
+                    focusBorderColor="#f3d340"
                     bg="#ecedf6"
                     id="email"
                     name="email"
@@ -135,7 +135,7 @@ export default function Login() {
                   <InputGroup>
                     <Input
                       type={showPassword ? 'text' : 'password'}
-                      focusBorderColor="#ce1567"
+                      focusBorderColor="#f3d340"
                       bg="#ecedf6"
                       id="password"
                       name="password"
@@ -151,12 +151,12 @@ export default function Login() {
                       {showPassword ? (
                         <BiHide
                           style={{ width: '20px', height: '20px' }}
-                          color="#3d3d3d"
+                          color="#f3d340"
                         />
                       ) : (
                         <BiShow
                           style={{ width: '20px', height: '20px' }}
-                          color="#3d3d3d"
+                          color="#f3d340"
                         />
                       )}
                     </InputRightElement>
@@ -175,7 +175,7 @@ export default function Login() {
                     mt={['1rem', '']}
                     px="4rem"
                     fontSize="1rem"
-                    bg="#ce1567"
+                    bg="#f3d340"
                     color="white"
                     _hover={{
                       bg: '',
@@ -196,7 +196,7 @@ export default function Login() {
           <Text
             textAlign="center"
             fontSize={['1.1rem', '1.2rem']}
-            color="#ce1567"
+            color="#f3d340"
             fontWeight="600"
           >
             <Link to="/signup">Register</Link>
