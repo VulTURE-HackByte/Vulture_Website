@@ -1,26 +1,15 @@
-import { Box, Button, Text } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import { Button, Container } from '@chakra-ui/react';
+import { useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const Login = () => {
-  const [loginStatus, setLoginStatus] = useState('');
-  const [token, setToken] = useState(null);
-  const { loginWithRedirect, user, getAccessTokenSilently, isAuthenticated } =
+  const { loginWithRedirect, getAccessTokenSilently, isAuthenticated } =
     useAuth0();
-
-  useEffect(() => {
-    if (user) {
-      setLoginStatus('Logged in successfully!');
-    } else {
-      setLoginStatus('');
-    }
-  }, [user, token]);
 
   useEffect(() => {
     const getToken = async () => {
       try {
-        const token = await getAccessTokenSilently();
-        setToken(token);
+        await getAccessTokenSilently();
       } catch (error) {
         console.error('Error fetching token:', error);
       }
@@ -31,17 +20,23 @@ const Login = () => {
   }, [isAuthenticated, getAccessTokenSilently]);
 
   return (
-    <Box>
-      {loginStatus && <Text>{loginStatus}</Text>}
-      {user && <Text>{user.name}</Text>}
+    <Container>
       <Button
-        colorScheme={'blue'}
-        variant={'solid'}
+        as={'a'}
+        display={{ base: 'inline-flex' }}
+        fontSize={'sm'}
+        fontWeight={600}
+        color={'black'}
+        bg={'#B9FF66'}
+        href={'#'}
+        _hover={{
+          bg: '#B9FF66',
+        }}
         onClick={() => loginWithRedirect()}
       >
-        Sign In With Google
+        Sign In
       </Button>
-    </Box>
+    </Container>
   );
 };
 

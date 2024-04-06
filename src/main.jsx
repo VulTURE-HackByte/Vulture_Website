@@ -4,12 +4,22 @@ import App from './App.jsx';
 import './index.css';
 import { ChakraProvider } from '@chakra-ui/react';
 import Navbar from './components/Navbar/index.jsx';
-import Login from './components/Login/index.jsx';
 import { Auth0Provider } from '@auth0/auth0-react';
+import Landing from './components/Landing/index.jsx';
+import Features from './components/Features/index.jsx';
+import Input from './components/Input/index.jsx';
+import { extendTheme } from '@chakra-ui/react';
+import Footer from './components/Footer/index.jsx';
+
+const theme = extendTheme({
+  fonts: {
+    body: `Poppins, sans-serif`,
+  },
+});
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <Auth0Provider
         domain={import.meta.env.VITE_AUTHO_DOMAIN_ID}
         clientId={import.meta.env.VITE_AUTHO_CLIENT_ID}
@@ -17,7 +27,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       >
         <Navbar />
         <App />
-        <Login />
+        <Landing />
+        <Features />
+        <Input />
+        <Footer />
       </Auth0Provider>
     </ChakraProvider>
   </React.StrictMode>
