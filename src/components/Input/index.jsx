@@ -11,6 +11,7 @@ import {
   Button,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
+import axios from 'axios';
 
 export default function InputScan() {
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -19,10 +20,9 @@ export default function InputScan() {
   const handleChange = (event) => {
     const { value, checked } = event.target;
 
-    // Update selected options based on checkbox state
     const newSelectedOptions = checked
-      ? [...selectedOptions, value] // Add value if checked
-      : selectedOptions.filter((option) => option !== value); // Remove if unchecked
+      ? [...selectedOptions, value]
+      : selectedOptions.filter((option) => option !== value);
 
     setSelectedOptions(newSelectedOptions);
   };
@@ -33,9 +33,32 @@ export default function InputScan() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Prevent default form submission behavior
-    console.log('Selected Options:', selectedOptions); // Example: Log selected options
-    // Handle form submission logic here (e.g., send data to server)
+
+    async function runScan(option) {
+      let data = JSON.stringify({ target: targetUri });
+
+      let config = {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json',
+        },
+      };
+
+      try {
+        const response = await axios.post(
+          `http://localhost:4444/api/scan/${option}`,
+          data,
+          config
+        );
+        console.log(JSON.stringify(response.data));
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    selectedOptions.forEach((option) => {
+      runScan(option);
+    });
   };
 
   return (
@@ -51,7 +74,6 @@ export default function InputScan() {
         <Text
           lineHeight={1.1}
           fontSize={{ base: '5vw', md: '28px', lg: '32px' }}
-          //   bg={'#b9ff66'}
           px={'4px'}
           borderRadius={'5px'}
           fontWeight={650}
@@ -98,13 +120,13 @@ export default function InputScan() {
           <FormLabel>
             <Checkbox
               borderColor="rgb(26, 32, 44)"
-              value="spider"
-              checked={selectedOptions.includes('spider')}
+              value="spyder"
+              checked={selectedOptions.includes('spyder')}
               onChange={handleChange}
               fontWeight={350}
               fontSize={{ base: '3vw', md: '2vw', lg: '20px' }}
             >
-              Spider
+              Spyder
             </Checkbox>
           </FormLabel>
           <FormLabel>
