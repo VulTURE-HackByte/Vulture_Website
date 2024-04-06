@@ -9,10 +9,9 @@ import {
   Button,
   useToast,
 } from '@chakra-ui/react';
-import Features from '../Features';
-import Footer from '../Footer';
 import useAuthStore from '../../store/authStore';
 import { useNavigate } from 'react-router-dom';
+
 export default function Landing() {
   const { isAuth } = useAuthStore((state) => ({
     isAuth: state.isAuth,
@@ -23,10 +22,11 @@ export default function Landing() {
     <Box>
       <Flex
         w={'100%'}
-        justify={'space-evenly'}
+        justify={'center'}
         flexDirection={{ base: 'column', md: 'row' }}
         align={'center'}
-        pt={{ base: '50px', md: '20px' }}
+        py={'40px'}
+        bg={'#f0eff5'}
       >
         <Stack w={{ base: '90%', md: '40%' }} gap={'20px'}>
           <Text
@@ -46,14 +46,14 @@ export default function Landing() {
             mt={'10px'}
             display={{ base: 'inline-flex' }}
             fontSize={'md'}
-            fontWeight={600}
+            fontWeight={620}
             color={'black'}
-            bg={'#b9ff66'}
+            bg={'#f3d340'}
             cursor={'pointer'}
             cli
             onClick={() => {
               isAuth
-                ? navigate('/input')
+                ? navigate('/scans')
                 : toast({
                     title: 'Error',
                     description: 'Please login to perform scans',
@@ -65,17 +65,18 @@ export default function Landing() {
                   });
             }}
             _hover={{
-              bg: '#b9ff66',
+              bg: '#f3d340',
             }}
-            h={'40px'}
-            w={'50%'}
+            h={'52px'}
+            w={'60%'}
+            border={'2px solid #000'}
           >
             Perform Scans
           </Button>
         </Stack>
         <Image
-          src="../../src/assets/landing.png"
-          w={{ base: '60vw', md: '30%' }}
+          src="../../src/assets/illustr.png"
+          w={{ base: '60vw', md: '40%' }}
           aspectRatio={'1/1'}
           pt={{ base: '50px', md: '0px' }}
           onClick={() => {
@@ -83,8 +84,6 @@ export default function Landing() {
           }}
         />
       </Flex>
-      <Features />
-      <Footer />
     </Box>
   );
 }

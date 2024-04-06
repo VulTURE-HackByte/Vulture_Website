@@ -9,6 +9,7 @@ import {
   Checkbox,
   Input,
   Button,
+  Image,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import axios from 'axios';
@@ -84,6 +85,7 @@ export default function InputScan() {
         <Text
           fontSize={{ base: '1.7vw', md: '1.2vw' }}
           w={{ base: '90%', md: '65%' }}
+          lineHeight={1.1}
         >
           Use custom scans leveraging best cybersecurity tools to get the most
           easy-to-comprehend analysis of your sites and make your pen-testing
@@ -91,30 +93,51 @@ export default function InputScan() {
         </Text>
       </Flex>
       <FormControl
+        pos={'relative'}
         mx={'auto'}
         onSubmit={handleSubmit}
         w={{ base: '90%', md: '80%' }}
-        bg={'#b9ff66'}
+        bg={'#f3d340'}
         borderRadius={'10px'}
         py={'15px'}
         px={'30px'}
         gap={'20px'}
-        borderBottom={'4px solid #000'}
+        border={'2px solid #000'}
+        borderBottom={'7px solid #000'}
+        mb={'32px'}
       >
+        <Image
+          src={'../../src/assets/star.png'}
+          w={{ base: '32px' }}
+          pos={'absolute'}
+          top={'-5%'}
+          left={'-1.5%'}
+        />
         <Box>
-          <Text>Select options:</Text>
+          <Text fontSize={{ base: '1.7vw', md: '2vw' }} fontWeight={600}>
+            Select options:
+          </Text>
           <FormLabel>
-            <Text fontSize={{ base: '0.8rem', md: '1rem', lg: '1.6vw' }}>
-              Enter target URL
+            <Text
+              fontSize={{ base: '0.8rem', md: '1rem', lg: '1.4vw' }}
+              fontWeight={600}
+            >
+              Enter target URL here :-
             </Text>
             <Input
               type="text"
               value={targetUri}
               checked={selectedOptions.includes(targetUri)}
+              _hover={{ border: '2px solid #000' }}
+              _active={{ border: '2px solid #000' }}
               bg={'#fff'}
               onChange={handleInputChange}
+              border={'2px solid #000'}
+              borderRadius={'0px'}
+              boxShadow={'7px 7px 0px 0px #0B2447'}
               w={'40%'}
               mr={'20px'}
+              mb={'12px'}
             />
           </FormLabel>
           <FormLabel>
@@ -170,11 +193,39 @@ export default function InputScan() {
           }}
           h={'40px'}
           w={'25%'}
-          isDisabled={targetUri && selectedOptions ? false : true}
+          onSubmit={handleSubmit}
+          isDisabled={targetUri && selectedOptions.length > 0 ? false : true}
         >
           Submit
         </Button>
       </FormControl>
+      <Flex
+        mx={'auto'}
+        w={{ base: '90%', md: '80%' }}
+        bg={'#f3d340'}
+        borderRadius={'10px'}
+        py={'15px'}
+        px={'30px'}
+        // eslint-disable-next-line no-undef
+        display={selectedOptions.length > 0 && data ? 'flex' : 'none'}
+        gap={'20px'}
+        border={'2px solid #000'}
+        borderBottom={'7px solid #000'}
+      >
+        {/* eslint-disable-next-line no-undef */}
+        {selectedOptions.length > 0 && data ? (
+          <Text fontSize={{ base: '1.7vw', md: '2vw' }} fontWeight={600}>
+            Report:
+            {selectedOptions.map((option) => (
+              <Text key={option} fontWeight={400}>
+                {option}
+              </Text>
+            ))}
+          </Text>
+        ) : (
+          <></>
+        )}
+      </Flex>
     </Box>
   );
 }
