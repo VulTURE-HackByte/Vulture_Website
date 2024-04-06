@@ -1,6 +1,9 @@
 'use client';
 
 import { Box, Flex, Stack, Image, Text, Button } from '@chakra-ui/react';
+import Features from '../Features';
+import InputScan from '../Input';
+import Footer from '../Footer';
 
 export default function Landing() {
   return (
@@ -50,6 +53,9 @@ export default function Landing() {
           pt={{ base: '50px', md: '0px' }}
         />
       </Flex>
+      <Features />
+      <InputScan />
+      <Footer />
     </Box>
   );
 }

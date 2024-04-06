@@ -14,11 +14,18 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon, ChevronDownIcon } from '@chakra-ui/icons';
-import Login from '../Login';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
+  const navigate = useNavigate();
+  const login = () => {
+    navigate('/login');
+  };
+  const signup = () => {
+    navigate('/signup');
+  };
 
   return (
     <Box>
@@ -64,11 +71,12 @@ export default function Navbar() {
           </Flex>
         </Flex>
 
-        <Stack
+        <Flex
           flex={{ base: 1, md: 0 }}
           justify={'flex-end'}
           direction={'row'}
           spacing={6}
+          gap={'20px'}
         >
           <Button
             as={'a'}
@@ -77,14 +85,28 @@ export default function Navbar() {
             fontWeight={600}
             color={'black'}
             bg={'#B9FF66'}
-            href={'#'}
+            onClick={signup}
             _hover={{
               bg: '#B9FF66',
             }}
           >
-            <Login />
+            Sign Up
           </Button>
-        </Stack>
+          <Button
+            as={'a'}
+            display={{ base: 'inline-flex' }}
+            fontSize={'sm'}
+            fontWeight={600}
+            color={'black'}
+            bg={'#B9FF66'}
+            onClick={login}
+            _hover={{
+              bg: '#B9FF66',
+            }}
+          >
+            Sign In
+          </Button>
+        </Flex>
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>

@@ -25,11 +25,6 @@ const features = [
   },
 ];
 
-FeatureCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  desc: PropTypes.string.isRequired,
-};
-
 const FeatureCard = (props) => {
   return (
     <Flex
@@ -113,6 +108,11 @@ export default function Features() {
     </Box>
   );
 }
+
+FeatureCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  desc: PropTypes.string.isRequired,
+};
 
 Features.propTypes = {
   features: PropTypes.arrayOf(
