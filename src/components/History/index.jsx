@@ -13,31 +13,47 @@ import {
   Td,
   Tbody,
 } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const history = [
-  {
-    title: 'Automated Security Scanning',
-    desc: 'Vulture ZAP automates security scanning processes using OWASP ZAP, swiftly identifying potential vulnerabilities in web applications.',
-    color: '#f3d340',
-  },
-  {
-    title: 'Comprehensive Scans',
-    desc: 'Conduct thorough spider scans, passive scans, and active scans to comprehensively map and analyze web applications for vulnerabilities.',
-    color: '',
-  },
-  {
-    title: ' Customizable Scans',
-    desc: 'Customize scanning parameters to focus on specific vulnerabilities, enabling or disabling scanners based on tailored requirements.',
-    color: '',
-  },
-  {
-    title: 'Detailed Reporting',
-    desc: 'Receive detailed reports on detected security alerts, including vulnerability type, risk level, and confidence level, facilitating effective vulnerability management.',
-    color: '',
-  },
-];
+// const history = [
+//   {
+//     title: 'Automated Security Scanning',
+//     desc: 'Vulture ZAP automates security scanning processes using OWASP ZAP, swiftly identifying potential vulnerabilities in web applications.',
+//     color: '#f3d340',
+//   },
+//   {
+//     title: 'Comprehensive Scans',
+//     desc: 'Conduct thorough spider scans, passive scans, and active scans to comprehensively map and analyze web applications for vulnerabilities.',
+//     color: '',
+//   },
+//   {
+//     title: ' Customizable Scans',
+//     desc: 'Customize scanning parameters to focus on specific vulnerabilities, enabling or disabling scanners based on tailored requirements.',
+//     color: '',
+//   },
+//   {
+//     title: 'Detailed Reporting',
+//     desc: 'Receive detailed reports on detected security alerts, including vulnerability type, risk level, and confidence level, facilitating effective vulnerability management.',
+//     color: '',
+//   },
+// ];
 
 const HistoryCard = () => {
+  const [history, setHistory] = useState([]);
+  useEffect(() => {
+    async function fetchHistory() {
+      try {
+        const response = await axios.get('http://localhost:4444/api/history');
+        console.log(response.data);
+        setHistory(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchHistory();
+  }, []);
+
   return (
     <TableContainer w={'80%'} mx={'auto'}>
       <Table variant={''} colorScheme="teal">
@@ -50,21 +66,13 @@ const HistoryCard = () => {
           </Tr>
         </Thead>
         <Tbody>
-          <Tr>
-            <Td>inches</Td>
-            <Td>millimetres (mm)</Td>
-            <Td isNumeric>25.4</Td>
-          </Tr>
-          <Tr>
-            <Td>feet</Td>
-            <Td>centimetres (cm)</Td>
-            <Td isNumeric>30.48</Td>
-          </Tr>
-          <Tr>
-            <Td>yards</Td>
-            <Td>metres (m)</Td>
-            <Td isNumeric>0.91444</Td>
-          </Tr>
+          {history.map((scan) => (
+            <Tr key={scan.id}>
+              <Td>{scan.title}</Td>
+              <Td>{scan.timestamp}</Td>
+              <Td>{scan.options}</Td>
+            </Tr>
+          ))}
         </Tbody>
       </Table>
     </TableContainer>
