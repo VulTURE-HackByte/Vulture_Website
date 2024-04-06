@@ -17,23 +17,57 @@ import { HamburgerIcon, CloseIcon, ChevronDownIcon } from '@chakra-ui/icons';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import useAuthStore from '../../store/authStore';
+import { useEffect } from 'react';
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
   const navigate = useNavigate();
+
   const login = () => {
     navigate('/login');
   };
+
   const signup = () => {
     navigate('/signup');
   };
-  const { isAuth, toggleAuth } = useAuthStore((state) => ({
+
+  const {
+    isAuth,
+    userName,
+    userEmail,
+    setUserEmail,
+    setUserName,
+    addAuth,
+    removeAuth,
+  } = useAuthStore((state) => ({
     isAuth: state.isAuth,
-    toggleAuth: state.toggleAuth,
+    userName: state.userName,
+    userEmail: state.userEmail,
+    setUserName: state.setUserName,
+    setUserEmail: state.setUserEmail,
+    addAuth: state.addAuth,
+    removeAuth: state.removeAuth,
   }));
 
+  useEffect(() => {
+    setUserEmail(localStorage.getItem('email'));
+    setUserName(localStorage.getItem('name'));
+
+    return () => {
+      if (userName != null && userEmail != null) {
+        addAuth();
+      } else {
+        removeAuth();
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const logout = () => {
-    toggleAuth();
+    removeAuth();
+    localStorage.clear();
+    setUserEmail('');
+    setUserName('');
   };
 
   return (
@@ -71,6 +105,10 @@ export default function Navbar() {
         >
           <Image
             src="../../src/assets/logo.png"
+            cursor={'pointer'}
+            onClick={() => {
+              navigate('/');
+            }}
             w={{ base: 150, md: 150 }}
             h={{ base: 12, md: 12 }}
           />
@@ -80,7 +118,7 @@ export default function Navbar() {
           </Flex>
         </Flex>
 
-        {isAuth ? (
+        {!isAuth ? (
           <Flex
             flex={{ base: 1, md: 0 }}
             justify={'flex-end'}
@@ -96,6 +134,7 @@ export default function Navbar() {
               color={'black'}
               bg={'#b9ff66'}
               onClick={signup}
+              cursor={'pointer'}
               _hover={{
                 bg: '#b9ff66',
               }}
@@ -110,6 +149,7 @@ export default function Navbar() {
               color={'black'}
               bg={'#b9ff66'}
               onClick={login}
+              cursor={'pointer'}
               _hover={{
                 bg: '#b9ff66',
               }}
@@ -126,6 +166,7 @@ export default function Navbar() {
             color={'black'}
             bg={'#b9ff66'}
             onClick={logout}
+            cursor={'pointer'}
             _hover={{
               bg: '#b9ff66',
             }}
