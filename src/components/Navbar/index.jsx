@@ -124,10 +124,10 @@ export default function Navbar() {
             fontSize={'sm'}
             fontWeight={600}
             color={'black'}
-            bg={'#7aabe6'}
+            bg={'#b9ff66'}
             onClick={logout}
             _hover={{
-              bg: '#7aabe6',
+              bg: '#b9ff66',
             }}
           >
             Logout
