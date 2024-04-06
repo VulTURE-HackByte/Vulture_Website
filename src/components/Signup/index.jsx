@@ -15,26 +15,34 @@ import {
 
 import { BiShow, BiHide } from 'react-icons/bi';
 import { AiOutlineArrowRight } from 'react-icons/ai';
+import axios from 'axios';
+import qs from 'qs';
+import { useNavigate } from 'react-router-dom';
+import useAuthStore from '../../store/authStore';
 
 export default function Signup() {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [signupData, setSignupData] = useState({
     name: '',
-    phone: '',
     email: '',
     password: '',
     confirmPassword: '',
   });
-  const { name, phone, email, password, confirmPassword } = signupData;
+  const { name, email, password, confirmPassword } = signupData;
   const toast = useToast();
-
+  const navigate = useNavigate();
   const onChange = (e) => {
     setSignupData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
   };
+
+  const { toggleAuth } = useAuthStore((state) => ({
+    isAuth: state.isAuth,
+    toggleAuth: state.toggleAuth,
+  }));
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -48,9 +56,37 @@ export default function Signup() {
         position: 'top',
       });
       setLoading(false);
-      return;
     }
-    // Function from Axios for user signup
+
+    let data = qs.stringify({
+      name: name,
+      email: email,
+      password: password,
+    });
+
+    let config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: 'http://localhost:4444/api/users/register',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      withCredentials: true,
+      data: data,
+    };
+
+    async function makeRequest() {
+      try {
+        const response = await axios.request(config);
+        console.log(JSON.stringify(response.data));
+        toggleAuth();
+        navigate('/');
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    makeRequest();
   };
 
   return (
@@ -67,7 +103,7 @@ export default function Signup() {
           </Text>
           <Flex
             direction="column"
-            border="2px solid #ce1567"
+            border="2px solid #000000"
             w={['20rem', '27rem']}
             px={['1rem', '2rem']}
             py={['1rem', '2rem']}
@@ -93,23 +129,23 @@ export default function Signup() {
                     />
                   </Box>
                 </Box>
-                <Box mb={['1rem', '2rem']}>
-                  <Text mb="0.5rem" fontSize={['1.1rem', '1.2rem']}>
-                    Phone:{' '}
-                  </Text>
-                  <Box bg="#ffffff" borderRadius="0.4rem">
-                    <Input
-                      type="text"
-                      focusBorderColor="#ce1567"
-                      bg="#ecedf6"
-                      id="phone"
-                      name="phone"
-                      value={phone}
-                      placeholder="Phone..."
-                      onChange={onChange}
-                    />
-                  </Box>
-                </Box>
+                {/* <Box mb={['1rem', '2rem']}>
+                    <Text mb="0.5rem" fontSize={['1.1rem', '1.2rem']}>
+                      Phone:{' '}
+                    </Text>
+                    <Box bg="#ffffff" borderRadius="0.4rem">
+                      <Input
+                        type="text"
+                        focusBorderColor="#ce1567"
+                        bg="#ecedf6"
+                        id="phone"
+                        name="phone"
+                        value={phone}
+                        placeholder="Phone..."
+                        onChange={onChange}
+                      />
+                    </Box>
+                  </Box> */}
               </Flex>
               <Box mb={['1rem', '2rem']}>
                 <Text mb="0.5rem" fontSize={['1.1rem', '1.2rem']}>

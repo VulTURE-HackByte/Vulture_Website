@@ -12,9 +12,12 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import { BiHide, BiShow } from 'react-icons/bi';
+import axios from 'axios';
+import qs from 'qs';
+import { useNavigate } from 'react-router-dom';
+import useAuthStore from '../../store/authStore';
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
@@ -25,6 +28,7 @@ export default function Login() {
   });
   const { email, password } = loginData;
   const toast = useToast();
+  const navigate = useNavigate();
 
   const onChange = (e) => {
     setLoginData((prevState) => ({
@@ -32,6 +36,11 @@ export default function Login() {
       [e.target.name]: e.target.value,
     }));
   };
+
+  const { toggleAuth } = useAuthStore((state) => ({
+    isAuth: state.isAuth,
+    toggleAuth: state.toggleAuth,
+  }));
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -47,7 +56,35 @@ export default function Login() {
       setLoading(false);
       return;
     }
-    // Function from Axios for user login
+
+    let data = qs.stringify({
+      email: email,
+      password: password,
+    });
+
+    let config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: 'http://localhost:4444/api/users/login',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      withCredentials: true,
+      data: data,
+    };
+
+    async function makeRequest() {
+      try {
+        const response = await axios.request(config);
+        console.log(JSON.stringify(response.data));
+        toggleAuth();
+        navigate('/');
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    makeRequest();
   };
 
   return (

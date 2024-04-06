@@ -16,6 +16,7 @@ import {
 import { HamburgerIcon, CloseIcon, ChevronDownIcon } from '@chakra-ui/icons';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import useAuthStore from '../../store/authStore';
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
@@ -25,6 +26,14 @@ export default function Navbar() {
   };
   const signup = () => {
     navigate('/signup');
+  };
+  const { isAuth, toggleAuth } = useAuthStore((state) => ({
+    isAuth: state.isAuth,
+    toggleAuth: state.toggleAuth,
+  }));
+
+  const logout = () => {
+    toggleAuth();
   };
 
   return (
@@ -71,13 +80,44 @@ export default function Navbar() {
           </Flex>
         </Flex>
 
-        <Flex
-          flex={{ base: 1, md: 0 }}
-          justify={'flex-end'}
-          direction={'row'}
-          spacing={6}
-          gap={'20px'}
-        >
+        {isAuth ? (
+          <Flex
+            flex={{ base: 1, md: 0 }}
+            justify={'flex-end'}
+            direction={'row'}
+            spacing={6}
+            gap={'20px'}
+          >
+            <Button
+              as={'a'}
+              display={{ base: 'inline-flex' }}
+              fontSize={'sm'}
+              fontWeight={600}
+              color={'black'}
+              bg={'#7aabe6'}
+              onClick={signup}
+              _hover={{
+                bg: '#7aabe6',
+              }}
+            >
+              Sign Up
+            </Button>
+            <Button
+              as={'a'}
+              display={{ base: 'inline-flex' }}
+              fontSize={'sm'}
+              fontWeight={600}
+              color={'black'}
+              bg={'#7aabe6'}
+              onClick={login}
+              _hover={{
+                bg: '#7aabe6',
+              }}
+            >
+              Sign In
+            </Button>
+          </Flex>
+        ) : (
           <Button
             as={'a'}
             display={{ base: 'inline-flex' }}
@@ -85,28 +125,14 @@ export default function Navbar() {
             fontWeight={600}
             color={'black'}
             bg={'#7aabe6'}
-            onClick={signup}
+            onClick={logout}
             _hover={{
               bg: '#7aabe6',
             }}
           >
-            Sign Up
+            Logout
           </Button>
-          <Button
-            as={'a'}
-            display={{ base: 'inline-flex' }}
-            fontSize={'sm'}
-            fontWeight={600}
-            color={'black'}
-            bg={'#7aabe6'}
-            onClick={login}
-            _hover={{
-              bg: '#7aabe6',
-            }}
-          >
-            Sign In
-          </Button>
-        </Flex>
+        )}
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
