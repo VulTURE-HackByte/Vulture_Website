@@ -10,21 +10,11 @@ import {
   Input,
   Button,
 } from '@chakra-ui/react';
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import useAuthStore from '../../store/authStore';
+import React, { useState } from 'react';
 
 export default function InputScan() {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [targetUri, setTargetUri] = useState('');
-  const { user } = useAuthStore();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!user) {
-      navigate('/login');
-    }
-  }, [user, navigate]);
 
   const handleChange = (event) => {
     const { value, checked } = event.target;

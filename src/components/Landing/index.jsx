@@ -4,9 +4,12 @@ import { Box, Flex, Stack, Image, Text, Button } from '@chakra-ui/react';
 import Features from '../Features';
 import Footer from '../Footer';
 import useAuthStore from '../../store/authStore';
-
+import { useNavigate } from 'react-router-dom';
 export default function Landing() {
-  const { user } = useAuthStore();
+  const { isAuth } = useAuthStore((state) => ({
+    isAuth: state.isAuth,
+  }));
+  const navigate = useNavigate();
 
   return (
     <Box>
@@ -38,13 +41,13 @@ export default function Landing() {
             fontWeight={600}
             color={'black'}
             bg={'#b9ff66'}
-            href={'/input'}
+            // href={'/input'}
             _hover={{
               bg: '#b9ff66',
             }}
             h={'40px'}
             w={'50%'}
-            isDisabled={user ? false : true}
+            isDisabled={isAuth ? true : false}
           >
             Perform Scans
           </Button>
@@ -54,6 +57,9 @@ export default function Landing() {
           w={{ base: '60vw', md: '30%' }}
           aspectRatio={'1/1'}
           pt={{ base: '50px', md: '0px' }}
+          onClick={() => {
+            navigate('/input');
+          }}
         />
       </Flex>
       <Features />

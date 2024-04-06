@@ -71,6 +71,9 @@ export default function Navbar() {
         >
           <Image
             src="../../src/assets/logo.png"
+            onClick={() => {
+              navigate('/');
+            }}
             w={{ base: 150, md: 150 }}
             h={{ base: 12, md: 12 }}
           />
