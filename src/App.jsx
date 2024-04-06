@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import { Box } from '@chakra-ui/react';
 import Signup from './components/Signup/index.jsx';
 import Login from './components/Login/index.jsx';
+import History from './components/History/index.jsx';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/scans" element={<ScansPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/history" element={<History />} />
       </Routes>
     </Box>
   );

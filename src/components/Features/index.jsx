@@ -6,22 +6,18 @@ const features = [
   {
     title: 'Automated Security Scanning',
     desc: 'Vulture ZAP automates security scanning processes using OWASP ZAP, swiftly identifying potential vulnerabilities in web applications.',
-    color: '#f3d340',
   },
   {
     title: 'Comprehensive Scans',
     desc: 'Conduct thorough spider scans, passive scans, and active scans to comprehensively map and analyze web applications for vulnerabilities.',
-    color: '',
   },
   {
     title: ' Customizable Scans',
     desc: 'Customize scanning parameters to focus on specific vulnerabilities, enabling or disabling scanners based on tailored requirements.',
-    color: '',
   },
   {
     title: 'Detailed Reporting',
     desc: 'Receive detailed reports on detected security alerts, including vulnerability type, risk level, and confidence level, facilitating effective vulnerability management.',
-    color: '',
   },
 ];
 
@@ -39,7 +35,7 @@ const FeatureCard = (props) => {
       <Stack justify={'start'}>
         <Text
           fontWeight={620}
-          fontSize={{ base: '5vw', md: '28px' }}
+          fontSize={{ base: '5vw', md: '24px' }}
           w={{ base: '100%', md: '90%' }}
           lineHeight={1.1}
         >

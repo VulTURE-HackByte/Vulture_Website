@@ -1,11 +1,23 @@
 'use client';
 
-import { Box, Flex, Stack, Image, Text, Button } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  Stack,
+  Image,
+  Text,
+  Button,
+  useToast,
+} from '@chakra-ui/react';
 import useAuthStore from '../../store/authStore';
+import { useNavigate } from 'react-router-dom';
 
 export default function Landing() {
-  const { user } = useAuthStore();
-
+  const { isAuth } = useAuthStore((state) => ({
+    isAuth: state.isAuth,
+  }));
+  const navigate = useNavigate();
+  const toast = useToast();
   return (
     <Box>
       <Flex
@@ -37,14 +49,27 @@ export default function Landing() {
             fontWeight={620}
             color={'black'}
             bg={'#f3d340'}
-            href={'/input'}
+            cursor={'pointer'}
+            cli
+            onClick={() => {
+              isAuth
+                ? navigate('/scans')
+                : toast({
+                    title: 'Error',
+                    description: 'Please login to perform scans',
+                    status: 'error',
+                    duration: 2000,
+                    variant: 'subtle',
+                    isClosable: true,
+                    position: 'top',
+                  });
+            }}
             _hover={{
               bg: '#f3d340',
             }}
             h={'52px'}
             w={'60%'}
             border={'2px solid #000'}
-            isDisabled={user ? false : true}
           >
             Perform Scans
           </Button>
@@ -54,6 +79,9 @@ export default function Landing() {
           w={{ base: '60vw', md: '40%' }}
           aspectRatio={'1/1'}
           pt={{ base: '50px', md: '0px' }}
+          onClick={() => {
+            navigate('/input');
+          }}
         />
       </Flex>
     </Box>

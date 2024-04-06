@@ -40,18 +40,22 @@ export const Faq = ({ children }) => {
     <AccordionItem>
       {({ isExpanded }) => (
         <>
-          <h2>
-            <AccordionButton>
-              <Box as="span" flex="1" textAlign="left">
-                {children.q}
-              </Box>
-              {isExpanded ? (
-                <MinusIcon fontSize="12px" />
-              ) : (
-                <AddIcon fontSize="12px" />
-              )}
-            </AccordionButton>
-          </h2>
+          <AccordionButton>
+            <Box
+              as="span"
+              flex="1"
+              textAlign="left"
+              textShadow={''}
+              fontSize={'lg'}
+            >
+              {children.q}
+            </Box>
+            {isExpanded ? (
+              <MinusIcon fontSize="12px" />
+            ) : (
+              <AddIcon fontSize="12px" />
+            )}
+          </AccordionButton>
           <AccordionPanel pb={4}>{children.a}</AccordionPanel>
         </>
       )}
@@ -71,9 +75,15 @@ export default function FAQS() {
       <Flex
         w={{ base: '90%', md: '80%' }}
         mx={'auto'}
-        pb={'24px'}
         gap={'20px'}
         align={'center'}
+        bg={'#f3d340'}
+        border={'2px solid #000'}
+        borderRadius={'0px'}
+        boxShadow={'7px 7px 0px 0px #0B2447'}
+        mb={'36px'}
+        p={'10px'}
+        _hover={{ boxShadow: '-7px -7px 0px 0px #0B2447' }}
       >
         <Text
           lineHeight={1.1}
@@ -89,7 +99,7 @@ export default function FAQS() {
           fontSize={{ base: '1.7vw', md: '1.2vw' }}
           w={{ base: '90%', md: '65%' }}
         >
-          When VUlTURE offers so much to its users, it is natural to have
+          When VulTURE offers so much to its users, it is natural to have
           questions. Here are some of the most frequently asked questions.
         </Text>
       </Flex>

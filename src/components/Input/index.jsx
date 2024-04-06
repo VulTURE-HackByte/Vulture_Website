@@ -11,30 +11,19 @@ import {
   Button,
   Image,
 } from '@chakra-ui/react';
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import useAuthStore from '../../store/authStore';
+import React, { useState } from 'react';
+import axios from 'axios';
 
 export default function InputScan() {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [targetUri, setTargetUri] = useState('');
-  const { user } = useAuthStore();
-  const navigate = useNavigate();
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    if (user) {
-      navigate('/login');
-    }
-  }, [user, navigate]);
 
   const handleChange = (event) => {
     const { value, checked } = event.target;
 
-    // Update selected options based on checkbox state
     const newSelectedOptions = checked
-      ? [...selectedOptions, value] // Add value if checked
-      : selectedOptions.filter((option) => option !== value); // Remove if unchecked
+      ? [...selectedOptions, value]
+      : selectedOptions.filter((option) => option !== value);
 
     setSelectedOptions(newSelectedOptions);
   };
@@ -45,8 +34,32 @@ export default function InputScan() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Selected Options:', selectedOptions);
-    setData({ targetUri, selectedOptions });
+
+    async function runScan(option) {
+      let data = JSON.stringify({ target: targetUri });
+
+      let config = {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json',
+        },
+      };
+
+      try {
+        const response = await axios.post(
+          `http://localhost:4444/api/scan/${option}`,
+          data,
+          config
+        );
+        console.log(JSON.stringify(response.data));
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    selectedOptions.forEach((option) => {
+      runScan(option);
+    });
   };
 
   return (
@@ -130,13 +143,13 @@ export default function InputScan() {
           <FormLabel>
             <Checkbox
               borderColor="rgb(26, 32, 44)"
-              value="spider"
-              checked={selectedOptions.includes('spider')}
+              value="spyder"
+              checked={selectedOptions.includes('spyder')}
               onChange={handleChange}
               fontWeight={350}
               fontSize={{ base: '3vw', md: '2vw', lg: '20px' }}
             >
-              Spider
+              Spyder
             </Checkbox>
           </FormLabel>
           <FormLabel>
@@ -171,8 +184,10 @@ export default function InputScan() {
           display={{ base: 'inline-flex' }}
           fontSize={'md'}
           fontWeight={600}
+          onClick={handleSubmit}
           color={'white'}
           bg={'black'}
+          cursor={'pointer'}
           _hover={{
             bg: '#333333',
           }}
@@ -191,11 +206,13 @@ export default function InputScan() {
         borderRadius={'10px'}
         py={'15px'}
         px={'30px'}
+        // eslint-disable-next-line no-undef
         display={selectedOptions.length > 0 && data ? 'flex' : 'none'}
         gap={'20px'}
         border={'2px solid #000'}
         borderBottom={'7px solid #000'}
       >
+        {/* eslint-disable-next-line no-undef */}
         {selectedOptions.length > 0 && data ? (
           <Text fontSize={{ base: '1.7vw', md: '2vw' }} fontWeight={600}>
             Report:
