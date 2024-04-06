@@ -67,12 +67,12 @@ export default function Navbar() {
           flex={{ base: 1 }}
           align={'center'}
           justify={{ base: 'center', md: 'start' }}
-          gap={{ base: '20%', lg: '30%' }}
+          gap={{ base: '30%', lg: '40%' }}
         >
           <Image
             src="../../src/assets/logo.png"
             w={{ base: 150, md: 150 }}
-            h={{ base: 10, md: 10 }}
+            h={{ base: 12, md: 12 }}
           />
 
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
@@ -94,10 +94,10 @@ export default function Navbar() {
               fontSize={'sm'}
               fontWeight={600}
               color={'black'}
-              bg={'#7aabe6'}
+              bg={'#b9ff66'}
               onClick={signup}
               _hover={{
-                bg: '#7aabe6',
+                bg: '#b9ff66',
               }}
             >
               Sign Up
@@ -108,10 +108,10 @@ export default function Navbar() {
               fontSize={'sm'}
               fontWeight={600}
               color={'black'}
-              bg={'#7aabe6'}
+              bg={'#b9ff66'}
               onClick={login}
               _hover={{
-                bg: '#7aabe6',
+                bg: '#b9ff66',
               }}
             >
               Sign In
@@ -240,16 +240,16 @@ const MobileNavItem = ({ label, children, href }) => {
 const NAV_ITEMS = [
   {
     label: 'Github',
-    href: '/github',
+    href: 'https://github.com/VulTURE-HackByte',
   },
-  {
-    label: 'Features',
-    href: '/features',
-  },
-  {
-    label: 'Download',
-    href: '/download',
-  },
+  // {
+  //   label: 'Features',
+  //   href: '/features',
+  // },
+  // {
+  //   label: 'Download',
+  //   href: '/download',
+  // },
 ];
 
 MobileNavItem.propTypes = {

@@ -37,10 +37,10 @@ export default function Landing() {
             fontSize={'md'}
             fontWeight={600}
             color={'black'}
-            bg={'#7aabe6'}
+            bg={'#b9ff66'}
             href={'/input'}
             _hover={{
-              bg: '#7aabe6',
+              bg: '#b9ff66',
             }}
             h={'40px'}
             w={'50%'}
@@ -50,7 +50,7 @@ export default function Landing() {
           </Button>
         </Stack>
         <Image
-          src="../../src/assets/Illustration.png"
+          src="../../src/assets/landing.png"
           w={{ base: '60vw', md: '30%' }}
           aspectRatio={'1/1'}
           pt={{ base: '50px', md: '0px' }}

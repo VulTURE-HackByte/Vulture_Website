@@ -60,7 +60,7 @@ export default function InputScan() {
         <Text
           lineHeight={1.1}
           fontSize={{ base: '5vw', md: '28px', lg: '32px' }}
-          //   bg={'#7aabe6'}
+          //   bg={'#b9ff66'}
           px={'4px'}
           borderRadius={'5px'}
           fontWeight={650}
@@ -81,7 +81,7 @@ export default function InputScan() {
         mx={'auto'}
         onSubmit={handleSubmit}
         w={{ base: '90%', md: '80%' }}
-        bg={'#7aabe6'}
+        bg={'#b9ff66'}
         borderRadius={'10px'}
         py={'15px'}
         px={'30px'}

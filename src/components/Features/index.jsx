@@ -6,7 +6,7 @@ const features = [
   {
     title: 'Automated Security Scanning',
     desc: 'Vulture ZAP automates security scanning processes using OWASP ZAP, swiftly identifying potential vulnerabilities in web applications.',
-    color: '#7aabe6',
+    color: '#b9ff66',
   },
   {
     title: 'Comprehensive Scans',
@@ -29,7 +29,7 @@ const FeatureCard = (props) => {
   return (
     <Flex
       w={{ base: '90%', md: '48%' }}
-      bg={'#7aabe6'}
+      bg={'#b9ff66'}
       borderRadius={'10px'}
       p={'15px'}
       gap={'20px'}
@@ -69,7 +69,7 @@ export default function Features() {
           <Text
             lineHeight={1.1}
             fontSize={{ base: '5vw', md: '28px', lg: '32px' }}
-            // bg={'#7aabe6'}
+            // bg={'#b9ff66'}
             px={'4px'}
             borderRadius={'5px'}
             fontWeight={650}
