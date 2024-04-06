@@ -9,6 +9,7 @@ import { extendTheme } from '@chakra-ui/react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Signup from './components/Signup/index.jsx';
 import Login from './components/Login/index.jsx';
+import InputScan from './components/Input/index.jsx';
 
 const theme = extendTheme({
   fonts: {
@@ -30,6 +31,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route exact path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            {/* <Route path='/features' element={<Features />} /> */}
+            <Route path="/input" element={<InputScan />} />
           </Routes>
         </Auth0Provider>
       </Router>

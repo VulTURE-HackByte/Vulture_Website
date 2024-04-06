@@ -84,10 +84,10 @@ export default function Navbar() {
             fontSize={'sm'}
             fontWeight={600}
             color={'black'}
-            bg={'#B9FF66'}
+            bg={'#7aabe6'}
             onClick={signup}
             _hover={{
-              bg: '#B9FF66',
+              bg: '#7aabe6',
             }}
           >
             Sign Up
@@ -98,10 +98,10 @@ export default function Navbar() {
             fontSize={'sm'}
             fontWeight={600}
             color={'black'}
-            bg={'#B9FF66'}
+            bg={'#7aabe6'}
             onClick={login}
             _hover={{
-              bg: '#B9FF66',
+              bg: '#7aabe6',
             }}
           >
             Sign In
@@ -217,8 +217,8 @@ const NAV_ITEMS = [
     href: '/github',
   },
   {
-    label: 'Docs',
-    href: '/docs',
+    label: 'Features',
+    href: '/features',
   },
   {
     label: 'Download',

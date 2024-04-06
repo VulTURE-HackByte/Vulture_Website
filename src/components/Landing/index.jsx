@@ -2,10 +2,12 @@
 
 import { Box, Flex, Stack, Image, Text, Button } from '@chakra-ui/react';
 import Features from '../Features';
-import InputScan from '../Input';
 import Footer from '../Footer';
+import useAuthStore from '../../store/authStore';
 
 export default function Landing() {
+  const { user } = useAuthStore();
+
   return (
     <Box>
       <Flex
@@ -35,26 +37,26 @@ export default function Landing() {
             fontSize={'md'}
             fontWeight={600}
             color={'black'}
-            bg={'#B9FF66'}
-            href={'#'}
+            bg={'#7aabe6'}
+            href={'/input'}
             _hover={{
-              bg: '#B9FF66',
+              bg: '#7aabe6',
             }}
             h={'40px'}
             w={'50%'}
+            isDisabled={user ? false : true}
           >
-            Download Extension
+            Perform Scans
           </Button>
         </Stack>
         <Image
-          src="../../src/assets/landing.png"
+          src="../../src/assets/Illustration.png"
           w={{ base: '60vw', md: '30%' }}
           aspectRatio={'1/1'}
           pt={{ base: '50px', md: '0px' }}
         />
       </Flex>
       <Features />
-      <InputScan />
       <Footer />
     </Box>
   );
