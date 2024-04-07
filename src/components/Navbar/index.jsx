@@ -186,7 +186,6 @@ export default function Navbar() {
               Logout
             </Button>
           </Flex>
-
         )}
       </Flex>
 

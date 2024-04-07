@@ -10,6 +10,7 @@ import {
   Input,
   Button,
   Spinner,
+  Image,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import axios from 'axios';
