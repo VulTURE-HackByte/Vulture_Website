@@ -9,14 +9,17 @@ import {
   Checkbox,
   Input,
   Button,
-  Image,
+  Spinner,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function InputScan() {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [targetUri, setTargetUri] = useState('');
+  const [loading, isLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { value, checked } = event.target;
@@ -32,8 +35,9 @@ export default function InputScan() {
     setTargetUri(e.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    isLoading(true);
 
     async function runScan(option) {
       let data = JSON.stringify({ target: targetUri });
@@ -57,9 +61,17 @@ export default function InputScan() {
       }
     }
 
-    selectedOptions.forEach((option) => {
-      runScan(option);
-    });
+    Promise.all(selectedOptions.map((option) => runScan(option)))
+      .then(() => {
+        navigate('/'); // Navigate only after all requests have completed
+      })
+      .catch((error) => {
+        console.error('An error occurred during scanning:', error);
+        // Handle any errors here, such as showing an error message to the user
+      })
+      .finally(() => {
+        isLoading(false); // Stop loading indicator in any case
+      });
   };
 
   return (
@@ -152,9 +164,9 @@ export default function InputScan() {
           <FormLabel>
             <Checkbox
               borderColor="rgb(26, 32, 44)"
-              value="spyder"
+              value="spider"
               color={'white'}
-              checked={selectedOptions.includes('spyder')}
+              checked={selectedOptions.includes('spider')}
               onChange={handleChange}
               fontWeight={700}
               fontSize={{ base: '3vw', md: '2vw', lg: '20px' }}
@@ -207,7 +219,7 @@ export default function InputScan() {
           w={'25%'}
           isDisabled={targetUri && selectedOptions ? false : true}
         >
-          Submit
+          {loading ? <Spinner /> : 'Submit'}
         </Button>
       </FormControl>
     </Box>
