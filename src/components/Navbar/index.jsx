@@ -12,6 +12,7 @@ import {
   Image,
   useColorModeValue,
   useDisclosure,
+  Avatar,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon, ChevronDownIcon } from '@chakra-ui/icons';
 import PropTypes from 'prop-types';
@@ -31,33 +32,30 @@ export default function Navbar() {
     navigate('/signup');
   };
 
-  const {
-    isAuth,
-    userName,
-    userEmail,
-    setUserEmail,
-    setUserName,
-    addAuth,
-    removeAuth,
-  } = useAuthStore((state) => ({
-    isAuth: state.isAuth,
-    userName: state.userName,
-    userEmail: state.userEmail,
-    setUserName: state.setUserName,
-    setUserEmail: state.setUserEmail,
-    addAuth: state.addAuth,
-    removeAuth: state.removeAuth,
-  }));
+  const { isAuth, userName, setUserEmail, setUserName, addAuth, removeAuth } =
+    useAuthStore((state) => ({
+      isAuth: state.isAuth,
+      userName: state.userName,
+      userEmail: state.userEmail,
+      setUserName: state.setUserName,
+      setUserEmail: state.setUserEmail,
+      addAuth: state.addAuth,
+      removeAuth: state.removeAuth,
+    }));
 
   useEffect(() => {
     setUserEmail(localStorage.getItem('email'));
     setUserName(localStorage.getItem('name'));
 
     return () => {
-      if (userName != null && userEmail != null) {
+      if (
+        localStorage.getItem('email') != '' &&
+        localStorage.getItem('name') != ''
+      ) {
         addAuth();
       } else {
         removeAuth();
+        // localStorage.clear();
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -163,22 +161,31 @@ export default function Navbar() {
             </Button>
           </Flex>
         ) : (
-          <Button
-            as={'a'}
-            display={{ base: 'inline-flex' }}
-            fontSize={'sm'}
-            fontWeight={600}
-            color={'white'}
-            bg={'#356bd6'}
-            onClick={logout}
-            cursor={'pointer'}
-            _hover={{
-              bg: '#356bd6',
-            }}
-            border={'2px solid #000'}
-          >
-            Logout
-          </Button>
+          <Flex justify="center" align="center" gap="1.5rem">
+            <Avatar
+              name={userName}
+              bg="#b9ff66"
+              onClick={() => {
+                navigate('/history');
+              }}
+              cursor="pointer"
+            />
+            <Button
+              as={'a'}
+              display={{ base: 'inline-flex' }}
+              fontSize={'sm'}
+              fontWeight={600}
+              color={'black'}
+              bg={'#b9ff66'}
+              onClick={logout}
+              cursor={'pointer'}
+              _hover={{
+                bg: '#b9ff66',
+              }}
+            >
+              Logout
+            </Button>
+          </Flex>
         )}
       </Flex>
 
