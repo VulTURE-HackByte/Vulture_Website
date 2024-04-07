@@ -17,11 +17,11 @@ function Footer() {
             © {new Date().getFullYear()} VulTURE
           </Text>
           <Text fontSize="md">
-            <span style={{ color: '#f3d340' }}>Vul</span>nerability{' '}
-            <span style={{ color: '#f3d340' }}>T</span>esting{' '}
-            <span style={{ color: '#f3d340' }}>U</span>nderstanding and{' '}
-            <span style={{ color: '#f3d340' }}>R</span>esponse{' '}
-            <span style={{ color: '#f3d340' }}>E</span>ngine
+            <span style={{ color: '#356bd6' }}>Vul</span>nerability{' '}
+            <span style={{ color: '#356bd6' }}>T</span>esting{' '}
+            <span style={{ color: '#356bd6' }}>U</span>nderstanding and{' '}
+            <span style={{ color: '#356bd6' }}>R</span>esponse{' '}
+            <span style={{ color: '#356bd6' }}>E</span>ngine
           </Text>
         </Stack>
         <Box>

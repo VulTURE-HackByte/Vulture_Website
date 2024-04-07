@@ -63,14 +63,18 @@ export default function InputScan() {
   };
 
   return (
-    <Box>
+    <Box pt={'30px'}>
       <Flex
         w={{ base: '90%', md: '80%' }}
         mx={'auto'}
-        pb={'24px'}
-        pt={'40px'}
         gap={'20px'}
         align={'center'}
+        bg={'#356bd6'}
+        border={'2px solid #000'}
+        borderRadius={'0px'}
+        boxShadow={'7px 7px 0px 0px #0B2447'}
+        mb={'42px'}
+        p={'10px'}
       >
         <Text
           lineHeight={1.1}
@@ -78,14 +82,15 @@ export default function InputScan() {
           px={'4px'}
           borderRadius={'5px'}
           fontWeight={650}
-          color={'black'}
+          color={'aliceblue'}
         >
           Scans
         </Text>
         <Text
-          fontSize={{ base: '1.7vw', md: '1.2vw' }}
+          fontSize={{ base: '1.7vw', md: '1.1vw' }}
           w={{ base: '90%', md: '65%' }}
           lineHeight={1.1}
+          color={'white'}
         >
           Use custom scans leveraging best cybersecurity tools to get the most
           easy-to-comprehend analysis of your sites and make your pen-testing
@@ -97,13 +102,12 @@ export default function InputScan() {
         mx={'auto'}
         onSubmit={handleSubmit}
         w={{ base: '90%', md: '80%' }}
-        bg={'#f3d340'}
+        bg={'#356bd6'}
         borderRadius={'10px'}
         py={'15px'}
         px={'30px'}
         gap={'20px'}
         border={'2px solid #000'}
-        borderBottom={'7px solid #000'}
         mb={'32px'}
       >
         <Image
@@ -114,15 +118,20 @@ export default function InputScan() {
           left={'-1.5%'}
         />
         <Box>
-          <Text fontSize={{ base: '1.7vw', md: '2vw' }} fontWeight={600}>
+          <Text
+            fontSize={{ base: '1.7vw', md: '2vw' }}
+            fontWeight={600}
+            color={'white'}
+          >
             Select options:
           </Text>
           <FormLabel>
             <Text
               fontSize={{ base: '0.8rem', md: '1rem', lg: '1.4vw' }}
+              color={'white'}
               fontWeight={600}
             >
-              Enter target URL here :-
+              Enter target URL
             </Text>
             <Input
               type="text"
@@ -144,21 +153,23 @@ export default function InputScan() {
             <Checkbox
               borderColor="rgb(26, 32, 44)"
               value="spyder"
+              color={'white'}
               checked={selectedOptions.includes('spyder')}
               onChange={handleChange}
-              fontWeight={350}
+              fontWeight={700}
               fontSize={{ base: '3vw', md: '2vw', lg: '20px' }}
             >
-              Spyder
+              Spider
             </Checkbox>
           </FormLabel>
           <FormLabel>
             <Checkbox
               borderColor="rgb(26, 32, 44)"
               value="passive"
+              color={'white'}
               checked={selectedOptions.includes('passive')}
               onChange={handleChange}
-              fontWeight={350}
+              fontWeight={700}
               fontSize={{ base: '3vw', md: '2vw', lg: '20px' }}
             >
               Passive
@@ -168,9 +179,10 @@ export default function InputScan() {
             <Checkbox
               borderColor="rgb(26, 32, 44)"
               value="active"
+              color={'white'}
               checked={selectedOptions.includes('active')}
               onChange={handleChange}
-              fontWeight={350}
+              fontWeight={700}
               fontSize={{ base: '3vw', md: '2vw', lg: '20px' }}
             >
               Active
@@ -193,39 +205,11 @@ export default function InputScan() {
           }}
           h={'40px'}
           w={'25%'}
-          onSubmit={handleSubmit}
-          isDisabled={targetUri && selectedOptions.length > 0 ? false : true}
+          isDisabled={targetUri && selectedOptions ? false : true}
         >
           Submit
         </Button>
       </FormControl>
-      <Flex
-        mx={'auto'}
-        w={{ base: '90%', md: '80%' }}
-        bg={'#f3d340'}
-        borderRadius={'10px'}
-        py={'15px'}
-        px={'30px'}
-        // eslint-disable-next-line no-undef
-        display={selectedOptions.length > 0 && data ? 'flex' : 'none'}
-        gap={'20px'}
-        border={'2px solid #000'}
-        borderBottom={'7px solid #000'}
-      >
-        {/* eslint-disable-next-line no-undef */}
-        {selectedOptions.length > 0 && data ? (
-          <Text fontSize={{ base: '1.7vw', md: '2vw' }} fontWeight={600}>
-            Report:
-            {selectedOptions.map((option) => (
-              <Text key={option} fontWeight={400}>
-                {option}
-              </Text>
-            ))}
-          </Text>
-        ) : (
-          <></>
-        )}
-      </Flex>
     </Box>
   );
 }
