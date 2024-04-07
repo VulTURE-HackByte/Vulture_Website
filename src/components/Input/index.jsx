@@ -10,6 +10,7 @@ import {
   Input,
   Button,
   Spinner,
+  Image,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import axios from 'axios';
@@ -63,7 +64,7 @@ export default function InputScan() {
 
     Promise.all(selectedOptions.map((option) => runScan(option)))
       .then(() => {
-        navigate('/'); // Navigate only after all requests have completed
+        navigate('/history'); // Navigate only after all requests have completed
       })
       .catch((error) => {
         console.error('An error occurred during scanning:', error);

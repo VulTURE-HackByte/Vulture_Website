@@ -1,8 +1,6 @@
 'use client';
 
 import { Box, Flex, Stack, Text, Button, useToast } from '@chakra-ui/react';
-import Features from '../Features';
-import Footer from '../Footer';
 import useAuthStore from '../../store/authStore';
 import { useNavigate } from 'react-router-dom';
 import animation from './animation.json';

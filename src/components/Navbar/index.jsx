@@ -31,33 +31,30 @@ export default function Navbar() {
     navigate('/signup');
   };
 
-  const {
-    isAuth,
-    userName,
-    userEmail,
-    setUserEmail,
-    setUserName,
-    addAuth,
-    removeAuth,
-  } = useAuthStore((state) => ({
-    isAuth: state.isAuth,
-    userName: state.userName,
-    userEmail: state.userEmail,
-    setUserName: state.setUserName,
-    setUserEmail: state.setUserEmail,
-    addAuth: state.addAuth,
-    removeAuth: state.removeAuth,
-  }));
+  const { isAuth, setUserEmail, setUserName, addAuth, removeAuth } =
+    useAuthStore((state) => ({
+      isAuth: state.isAuth,
+      userName: state.userName,
+      userEmail: state.userEmail,
+      setUserName: state.setUserName,
+      setUserEmail: state.setUserEmail,
+      addAuth: state.addAuth,
+      removeAuth: state.removeAuth,
+    }));
 
   useEffect(() => {
     setUserEmail(localStorage.getItem('email'));
     setUserName(localStorage.getItem('name'));
 
     return () => {
-      if (userName != null && userEmail != null) {
+      if (
+        localStorage.getItem('email') != '' &&
+        localStorage.getItem('name') != ''
+      ) {
         addAuth();
       } else {
         removeAuth();
+        // localStorage.clear();
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
