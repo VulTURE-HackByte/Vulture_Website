@@ -1,16 +1,13 @@
 'use client';
 
-import {
-  Box,
-  Flex,
-  Stack,
-  Image,
-  Text,
-  Button,
-  useToast,
-} from '@chakra-ui/react';
+import { Box, Flex, Stack, Text, Button, useToast } from '@chakra-ui/react';
+import Features from '../Features';
+import Footer from '../Footer';
 import useAuthStore from '../../store/authStore';
 import { useNavigate } from 'react-router-dom';
+import animation from './animation.json';
+import Lottie from 'lottie-react';
+
 
 export default function Landing() {
   const { isAuth } = useAuthStore((state) => ({
@@ -74,12 +71,7 @@ export default function Landing() {
             Perform Scans
           </Button>
         </Stack>
-        <Image
-          src="../../src/assets/illustr.png"
-          w={{ base: '60vw', md: '40%' }}
-          aspectRatio={'1/1'}
-          pt={{ base: '50px', md: '0px' }}
-        />
+        <Lottie animationData={animation} />
       </Flex>
     </Box>
   );

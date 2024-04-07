@@ -12,6 +12,7 @@ import {
   Td,
   Tbody,
 } from '@chakra-ui/react';
+
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import DownloadButton from '../DownloadButton';
@@ -76,6 +77,7 @@ const HistoryCard = () => {
 export default function History() {
   return (
     <Box
+
       minH="100vh"
       bg={'#f0eff5'}
       display={'flex'}
@@ -101,6 +103,7 @@ export default function History() {
           px={'4px'}
           borderRadius={'5px'}
           fontWeight={650}
+
           color={'aliceblue'}
         >
           History

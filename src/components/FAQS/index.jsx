@@ -45,12 +45,14 @@ export const Faq = ({ children }) => {
               as="span"
               flex="1"
               textAlign="left"
+
               fontSize={'xl'}
               fontWeight={600}
             >
               {children.q}
             </Box>
             {isExpanded ? (
+
               <MinusIcon fontSize="16px" fontWeight={600} />
             ) : (
               <AddIcon fontSize="16px" fontWeight={600} />
@@ -79,6 +81,7 @@ export default function FAQS() {
         mx={'auto'}
         gap={'20px'}
         align={'center'}
+
         bg={'#356bd6'}
         mb={'36px'}
         p={'10px'}
@@ -90,6 +93,7 @@ export default function FAQS() {
           px={'4px'}
           borderRadius={'5px'}
           fontWeight={650}
+
           color={'white'}
         >
           FAQS
