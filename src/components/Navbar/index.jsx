@@ -134,12 +134,12 @@ export default function Navbar() {
               display={{ base: 'inline-flex' }}
               fontSize={'sm'}
               fontWeight={600}
-              color={'black'}
-              bg={'#f3d340'}
+              color={'white'}
+              bg={'#356bd6'}
               onClick={signup}
               cursor={'pointer'}
               _hover={{
-                bg: '#f3d340',
+                bg: '#356bd6',
               }}
               border={'2px solid #000'}
             >
@@ -150,12 +150,12 @@ export default function Navbar() {
               display={{ base: 'inline-flex' }}
               fontSize={'sm'}
               fontWeight={600}
-              color={'black'}
-              bg={'#f3d340'}
+              color={'white'}
+              bg={'#356bd6'}
               onClick={login}
               cursor={'pointer'}
               _hover={{
-                bg: '#f3d340',
+                bg: '#356bd6',
               }}
               border={'2px solid #000'}
             >
@@ -168,12 +168,12 @@ export default function Navbar() {
             display={{ base: 'inline-flex' }}
             fontSize={'sm'}
             fontWeight={600}
-            color={'black'}
-            bg={'#f3d340'}
+            color={'white'}
+            bg={'#356bd6'}
             onClick={logout}
             cursor={'pointer'}
             _hover={{
-              bg: '#f3d340',
+              bg: '#356bd6',
             }}
             border={'2px solid #000'}
           >

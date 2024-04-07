@@ -26,7 +26,7 @@ export default function Landing() {
         flexDirection={{ base: 'column', md: 'row' }}
         align={'center'}
         py={'40px'}
-        bg={'#f0eff5'}
+        bg={'#fff'}
       >
         <Stack w={{ base: '90%', md: '40%' }} gap={'20px'}>
           <Text
@@ -36,7 +36,7 @@ export default function Landing() {
           >
             Navigating the digital landscape safely
           </Text>
-          <Text fontSize={{ base: '3.2vw', md: '24px' }}>
+          <Text fontSize={{ base: '3.2vw', md: '20px' }}>
             VulTURE is a tool, designed especially for pen testers, to test for
             vulnerabilities in sites, understand them on your behalf and help
             you understand it.
@@ -47,8 +47,8 @@ export default function Landing() {
             display={{ base: 'inline-flex' }}
             fontSize={'md'}
             fontWeight={620}
-            color={'black'}
-            bg={'#f3d340'}
+            color={'white'}
+            bg={'#356bd6'}
             cursor={'pointer'}
             cli
             onClick={() => {
@@ -65,7 +65,7 @@ export default function Landing() {
                   });
             }}
             _hover={{
-              bg: '#f3d340',
+              bg: '#356bd6',
             }}
             h={'52px'}
             w={'60%'}
@@ -79,9 +79,6 @@ export default function Landing() {
           w={{ base: '60vw', md: '40%' }}
           aspectRatio={'1/1'}
           pt={{ base: '50px', md: '0px' }}
-          onClick={() => {
-            navigate('/input');
-          }}
         />
       </Flex>
     </Box>
