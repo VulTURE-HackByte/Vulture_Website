@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import animation from './animation.json';
 import Lottie from 'lottie-react';
 
+
 export default function Landing() {
   const { isAuth } = useAuthStore((state) => ({
     isAuth: state.isAuth,
@@ -18,10 +19,11 @@ export default function Landing() {
     <Box>
       <Flex
         w={'100%'}
-        justify={'space-evenly'}
+        justify={'center'}
         flexDirection={{ base: 'column', md: 'row' }}
         align={'center'}
-        pt={{ base: '50px', md: '20px' }}
+        py={'40px'}
+        bg={'#fff'}
       >
         <Stack w={{ base: '90%', md: '40%' }} gap={'20px'}>
           <Text
@@ -31,7 +33,7 @@ export default function Landing() {
           >
             Navigating the digital landscape safely
           </Text>
-          <Text fontSize={{ base: '3.2vw', md: '24px' }}>
+          <Text fontSize={{ base: '3.2vw', md: '20px' }}>
             VulTURE is a tool, designed especially for pen testers, to test for
             vulnerabilities in sites, understand them on your behalf and help
             you understand it.
@@ -41,14 +43,14 @@ export default function Landing() {
             mt={'10px'}
             display={{ base: 'inline-flex' }}
             fontSize={'md'}
-            fontWeight={600}
-            color={'black'}
-            bg={'#b9ff66'}
+            fontWeight={620}
+            color={'white'}
+            bg={'#356bd6'}
             cursor={'pointer'}
             cli
             onClick={() => {
               isAuth
-                ? navigate('/input')
+                ? navigate('/scans')
                 : toast({
                     title: 'Error',
                     description: 'Please login to perform scans',
@@ -60,18 +62,17 @@ export default function Landing() {
                   });
             }}
             _hover={{
-              bg: '#b9ff66',
+              bg: '#356bd6',
             }}
-            h={'40px'}
-            w={'50%'}
+            h={'52px'}
+            w={'60%'}
+            border={'2px solid #000'}
           >
             Perform Scans
           </Button>
         </Stack>
         <Lottie animationData={animation} />
       </Flex>
-      <Features />
-      <Footer />
     </Box>
   );
 }

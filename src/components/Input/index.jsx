@@ -75,14 +75,18 @@ export default function InputScan() {
   };
 
   return (
-    <Box>
+    <Box pt={'30px'}>
       <Flex
         w={{ base: '90%', md: '80%' }}
         mx={'auto'}
-        pb={'24px'}
-        pt={'40px'}
         gap={'20px'}
         align={'center'}
+        bg={'#356bd6'}
+        border={'2px solid #000'}
+        borderRadius={'0px'}
+        boxShadow={'7px 7px 0px 0px #0B2447'}
+        mb={'42px'}
+        p={'10px'}
       >
         <Text
           lineHeight={1.1}
@@ -90,13 +94,15 @@ export default function InputScan() {
           px={'4px'}
           borderRadius={'5px'}
           fontWeight={650}
-          color={'black'}
+          color={'aliceblue'}
         >
           Scans
         </Text>
         <Text
-          fontSize={{ base: '1.7vw', md: '1.2vw' }}
+          fontSize={{ base: '1.7vw', md: '1.1vw' }}
           w={{ base: '90%', md: '65%' }}
+          lineHeight={1.1}
+          color={'white'}
         >
           Use custom scans leveraging best cybersecurity tools to get the most
           easy-to-comprehend analysis of your sites and make your pen-testing
@@ -104,30 +110,55 @@ export default function InputScan() {
         </Text>
       </Flex>
       <FormControl
+        pos={'relative'}
         mx={'auto'}
         onSubmit={handleSubmit}
         w={{ base: '90%', md: '80%' }}
-        bg={'#b9ff66'}
+        bg={'#356bd6'}
         borderRadius={'10px'}
         py={'15px'}
         px={'30px'}
         gap={'20px'}
-        borderBottom={'4px solid #000'}
+        border={'2px solid #000'}
+        mb={'32px'}
       >
+        <Image
+          src={'../../src/assets/star.png'}
+          w={{ base: '32px' }}
+          pos={'absolute'}
+          top={'-5%'}
+          left={'-1.5%'}
+        />
         <Box>
-          <Text>Select options:</Text>
+          <Text
+            fontSize={{ base: '1.7vw', md: '2vw' }}
+            fontWeight={600}
+            color={'white'}
+          >
+            Select options:
+          </Text>
           <FormLabel>
-            <Text fontSize={{ base: '0.8rem', md: '1rem', lg: '1.6vw' }}>
+            <Text
+              fontSize={{ base: '0.8rem', md: '1rem', lg: '1.4vw' }}
+              color={'white'}
+              fontWeight={600}
+            >
               Enter target URL
             </Text>
             <Input
               type="text"
               value={targetUri}
               checked={selectedOptions.includes(targetUri)}
+              _hover={{ border: '2px solid #000' }}
+              _active={{ border: '2px solid #000' }}
               bg={'#fff'}
               onChange={handleInputChange}
+              border={'2px solid #000'}
+              borderRadius={'0px'}
+              boxShadow={'7px 7px 0px 0px #0B2447'}
               w={'40%'}
               mr={'20px'}
+              mb={'12px'}
             />
           </FormLabel>
           <FormLabel>
@@ -136,19 +167,20 @@ export default function InputScan() {
               value="spider"
               checked={selectedOptions.includes('spider')}
               onChange={handleChange}
-              fontWeight={350}
+              fontWeight={700}
               fontSize={{ base: '3vw', md: '2vw', lg: '20px' }}
             >
-              spider
+              Spider
             </Checkbox>
           </FormLabel>
           <FormLabel>
             <Checkbox
               borderColor="rgb(26, 32, 44)"
               value="passive"
+              color={'white'}
               checked={selectedOptions.includes('passive')}
               onChange={handleChange}
-              fontWeight={350}
+              fontWeight={700}
               fontSize={{ base: '3vw', md: '2vw', lg: '20px' }}
             >
               Passive
@@ -158,9 +190,10 @@ export default function InputScan() {
             <Checkbox
               borderColor="rgb(26, 32, 44)"
               value="active"
+              color={'white'}
               checked={selectedOptions.includes('active')}
               onChange={handleChange}
-              fontWeight={350}
+              fontWeight={700}
               fontSize={{ base: '3vw', md: '2vw', lg: '20px' }}
             >
               Active

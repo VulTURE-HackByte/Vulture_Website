@@ -45,18 +45,22 @@ export const Faq = ({ children }) => {
               as="span"
               flex="1"
               textAlign="left"
-              textShadow={''}
-              fontSize={'lg'}
+
+              fontSize={'xl'}
+              fontWeight={600}
             >
               {children.q}
             </Box>
             {isExpanded ? (
-              <MinusIcon fontSize="12px" />
+
+              <MinusIcon fontSize="16px" fontWeight={600} />
             ) : (
-              <AddIcon fontSize="12px" />
+              <AddIcon fontSize="16px" fontWeight={600} />
             )}
           </AccordionButton>
-          <AccordionPanel pb={4}>{children.a}</AccordionPanel>
+          <AccordionPanel pb={4} fontSize={'16px'} fontWeight={500}>
+            {children.a}
+          </AccordionPanel>
         </>
       )}
     </AccordionItem>
@@ -66,7 +70,7 @@ export const Faq = ({ children }) => {
 export default function FAQS() {
   return (
     <Box
-      bg={'#f0eff5'}
+      bg={'#fff '}
       display={'flex'}
       py={'60px'}
       flexDirection={'column'}
@@ -77,13 +81,11 @@ export default function FAQS() {
         mx={'auto'}
         gap={'20px'}
         align={'center'}
-        bg={'#f3d340'}
-        border={'2px solid #000'}
-        borderRadius={'0px'}
-        boxShadow={'7px 7px 0px 0px #0B2447'}
+
+        bg={'#356bd6'}
         mb={'36px'}
         p={'10px'}
-        _hover={{ boxShadow: '-7px -7px 0px 0px #0B2447' }}
+        borderRadius={'5px'}
       >
         <Text
           lineHeight={1.1}
@@ -91,16 +93,10 @@ export default function FAQS() {
           px={'4px'}
           borderRadius={'5px'}
           fontWeight={650}
-          color={'black'}
+
+          color={'white'}
         >
           FAQS
-        </Text>
-        <Text
-          fontSize={{ base: '1.7vw', md: '1.2vw' }}
-          w={{ base: '90%', md: '65%' }}
-        >
-          When VulTURE offers so much to its users, it is natural to have
-          questions. Here are some of the most frequently asked questions.
         </Text>
       </Flex>
       <Accordion allowMultiple w={{ base: '90%', md: '80%' }} mx={'auto'}>

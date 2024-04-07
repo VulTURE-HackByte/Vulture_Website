@@ -74,6 +74,8 @@ export default function Navbar() {
         bg={useColorModeValue('white', 'gray.800')}
         color={useColorModeValue('gray.600', 'white')}
         minH={'60px'}
+        w={'90%'}
+        mx={'auto'}
         py={{ base: 2 }}
         px={{ base: 4 }}
         borderBottom={1}
@@ -98,8 +100,9 @@ export default function Navbar() {
         <Flex
           flex={{ base: 1 }}
           align={'center'}
-          justify={{ base: 'center', md: 'start' }}
-          gap={{ base: '30%', lg: '40%' }}
+          justify={{ base: 'start' }}
+          gap={{ base: '25%', lg: '35%' }}
+          pr={{ base: '15%', md: '40px' }}
         >
           <Image
             src="../../src/assets/logo.png"
@@ -108,7 +111,7 @@ export default function Navbar() {
               navigate('/');
             }}
             w={{ base: 150, md: 150 }}
-            h={{ base: 12, md: 12 }}
+            aspectRatio={'10/3'}
           />
 
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
@@ -129,13 +132,14 @@ export default function Navbar() {
               display={{ base: 'inline-flex' }}
               fontSize={'sm'}
               fontWeight={600}
-              color={'black'}
-              bg={'#b9ff66'}
+              color={'white'}
+              bg={'#356bd6'}
               onClick={signup}
               cursor={'pointer'}
               _hover={{
-                bg: '#b9ff66',
+                bg: '#356bd6',
               }}
+              border={'2px solid #000'}
             >
               Sign Up
             </Button>
@@ -144,13 +148,14 @@ export default function Navbar() {
               display={{ base: 'inline-flex' }}
               fontSize={'sm'}
               fontWeight={600}
-              color={'black'}
-              bg={'#b9ff66'}
+              color={'white'}
+              bg={'#356bd6'}
               onClick={login}
               cursor={'pointer'}
               _hover={{
-                bg: '#b9ff66',
+                bg: '#356bd6',
               }}
+              border={'2px solid #000'}
             >
               Sign In
             </Button>
@@ -181,6 +186,7 @@ export default function Navbar() {
               Logout
             </Button>
           </Flex>
+
         )}
       </Flex>
 
@@ -203,8 +209,8 @@ const DesktopNav = () => {
             as="a"
             p={2}
             href={navItem.href ?? '#'}
-            fontSize={'sm'}
-            fontWeight={500}
+            fontSize={'md'}
+            fontWeight={600}
             color={linkColor}
             _hover={{
               textDecoration: 'none',
