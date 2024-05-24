@@ -1,4 +1,4 @@
-# Vulture_Website for VulTURE
+# Webpage for VulTURE
 
 Welcome to the frontend repository for VulTURE! This repository contains all the code for the frontend portion of our web application. Below you'll find useful information on how to get started, contribute, and deploy.
 
@@ -38,7 +38,7 @@ To get started with the frontend development, follow these steps:
 
 ## Deployment
 
-Our frontend is deployed and accessible [here](insert_link_to_deployed_frontend). You can visit the deployed version to see the application in action.
+Our frontend is deployed and accessible [here](). You can visit the deployed version to see the application in action.
 
 ## Feedback
 
