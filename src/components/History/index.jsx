@@ -17,7 +17,6 @@ import {
 import DownloadButton from '../DownloadButton';
 
 const HistoryCard = () => {
-  // const [history, setHistory] = useState([]);
   const reports = [
     {
       _id: '1',
@@ -50,6 +49,7 @@ const HistoryCard = () => {
       spyderRes: '../../src/assets/report6.pdf',
     },
   ];
+  // const [history, setHistory] = useState([]);
   // useEffect(() => {
   //   async function fetchHistory() {
   //     let config = {

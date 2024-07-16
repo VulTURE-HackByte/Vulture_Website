@@ -164,10 +164,11 @@ export default function Navbar() {
           <Flex justify="center" align="center" gap="1.5rem">
             <Avatar
               name={userName}
-              bg="#b9ff66"
+              bg="#356bd6"
               onClick={() => {
                 navigate('/history');
               }}
+              color="white"
               cursor="pointer"
             />
             <Button
@@ -175,13 +176,14 @@ export default function Navbar() {
               display={{ base: 'inline-flex' }}
               fontSize={'sm'}
               fontWeight={600}
-              color={'black'}
-              bg={'#b9ff66'}
+              color={'white'}
+              bg={'#356bd6'}
               onClick={logout}
               cursor={'pointer'}
               _hover={{
-                bg: '#b9ff66',
+                bg: '#356bd6',
               }}
+              border={'2px solid #000'}
             >
               Logout
             </Button>
