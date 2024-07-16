@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  useToast,
   Button,
   Text,
   Flex,
@@ -11,6 +10,7 @@ import {
   Input,
   InputRightElement,
   InputGroup,
+  useToast,
 } from '@chakra-ui/react';
 
 import { BiShow, BiHide } from 'react-icons/bi';
@@ -31,9 +31,8 @@ export default function Signup() {
     confirmPassword: '',
   });
   const { name, email, password, confirmPassword } = signupData;
-  const toast = useToast();
   const navigate = useNavigate();
-
+  const toast = useToast();
   const onChange = (e) => {
     setSignupData((prevState) => ({
       ...prevState,
@@ -57,14 +56,14 @@ export default function Signup() {
     setLoading(true);
     e.preventDefault();
     if (!(email && password)) {
-      // toast({
-      //   // title: 'Incomplete Entries',
-      //   // description: 'Please enter both email and password',
-      //   // status: 'error',
-      //   // duration: 2000,
-      //   // isClosable: true,
-      //   // position: 'top',
-      // });
+      toast({
+        title: 'Incomplete Entries',
+        description: 'Please enter all details',
+        status: 'error',
+        duration: 2000,
+        isClosable: true,
+        position: 'top',
+      });
       setLoading(false);
     }
 
@@ -94,31 +93,39 @@ export default function Signup() {
         navigate('/');
 
         localStorage.setItem('email', email);
-        localStorage.setItem('name', response.data.name);
+        localStorage.setItem('name', response.data);
         localStorage.setItem('token', response.data.token);
 
         setUserEmail(email);
         setUserName(response.data.name);
         setLoading(false);
-      } catch (error) {
-        setLoading(false);
-
-        const parser = new DOMParser();
-        const htmlDoc = parser.parseFromString(
-          error.response.data,
-          'text/html'
-        );
-        const errorMessage = htmlDoc.body.textContent.trim();
-
         toast({
-          title: 'Error',
-          description: errorMessage.slice(7, 27),
-          status: 'error',
+          title: 'Logged in successfully!',
+          // description: 'Please enter all details',
+          status: 'success',
           duration: 2000,
-          variant: 'subtle',
           isClosable: true,
           position: 'top',
         });
+      } catch (error) {
+        setLoading(false);
+
+        // const parser = new DOMParser();
+        // const htmlDoc = parser.parseFromString(
+        //   error.response.data,
+        //   'text/html'
+        // );
+        // const errorMessage = htmlDoc.body.textContent.trim();
+
+        // toast({
+        //   title: 'Error',
+        //   description: errorMessage.slice(7, 27),
+        //   status: 'error',
+        //   duration: 2000,
+        //   variant: 'subtle',
+        //   isClosable: true,
+        //   position: 'top',
+        // });
       }
     }
 

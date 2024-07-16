@@ -18,7 +18,6 @@ import { HamburgerIcon, CloseIcon, ChevronDownIcon } from '@chakra-ui/icons';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import useAuthStore from '../../store/authStore';
-import { useEffect } from 'react';
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
@@ -32,7 +31,7 @@ export default function Navbar() {
     navigate('/signup');
   };
 
-  const { isAuth, userName, setUserEmail, setUserName, addAuth, removeAuth } =
+  const { isAuth, userName, setUserEmail, setUserName, removeAuth } =
     useAuthStore((state) => ({
       isAuth: state.isAuth,
       userName: state.userName,
@@ -42,24 +41,6 @@ export default function Navbar() {
       addAuth: state.addAuth,
       removeAuth: state.removeAuth,
     }));
-
-  useEffect(() => {
-    setUserEmail(localStorage.getItem('email'));
-    setUserName(localStorage.getItem('name'));
-
-    return () => {
-      if (
-        localStorage.getItem('email') != '' &&
-        localStorage.getItem('name') != ''
-      ) {
-        addAuth();
-      } else {
-        removeAuth();
-        // localStorage.clear();
-      }
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const logout = () => {
     removeAuth();

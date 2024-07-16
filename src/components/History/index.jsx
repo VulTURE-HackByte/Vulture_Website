@@ -11,12 +11,34 @@ import {
   Th,
   Td,
   Tbody,
+  useToast,
 } from '@chakra-ui/react';
 // import { useState } from 'react';
 // import axios from 'axios';
 import DownloadButton from '../DownloadButton';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useAuthStore from '../../store/authStore';
 
 const HistoryCard = () => {
+  const navigate = useNavigate();
+  const isAuth = useAuthStore((state) => state.isAuth);
+  const toast = useToast();
+  useEffect(() => {
+    isAuth
+      ? null
+      : (toast({
+          title: 'Please Login first',
+          // description: '',
+          status: 'error',
+          duration: 2000,
+          variant: 'subtle',
+          isClosable: true,
+          position: 'top',
+        }),
+        navigate('/login'));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const reports = [
     {
       _id: '1',
