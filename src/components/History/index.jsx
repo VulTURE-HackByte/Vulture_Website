@@ -15,8 +15,18 @@ import {
 // import { useState } from 'react';
 // import axios from 'axios';
 import DownloadButton from '../DownloadButton';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useAuthStore from '../../store/authStore';
 
 const HistoryCard = () => {
+  const navigate = useNavigate();
+  const isAuth = useAuthStore((state) => state.isAuth);
+
+  useEffect(() => {
+    isAuth ? null : navigate('/login');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const reports = [
     {
       _id: '1',

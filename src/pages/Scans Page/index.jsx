@@ -1,5 +1,3 @@
-'use client';
-
 import InputScan from '../../components/Input';
 import { Box } from '@chakra-ui/react';
 
