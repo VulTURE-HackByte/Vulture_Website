@@ -68,7 +68,6 @@ export default function Landing() {
             Perform Scans
           </Button>
         </Stack>
-        <Lottie animationData={animation} />
         <Box w={'30%'}>
           <Lottie animationData={animation} />
         </Box>
