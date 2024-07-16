@@ -10,6 +10,7 @@ import {
   Input,
   InputRightElement,
   InputGroup,
+  useToast,
 } from '@chakra-ui/react';
 
 import { BiShow, BiHide } from 'react-icons/bi';
@@ -31,7 +32,7 @@ export default function Signup() {
   });
   const { name, email, password, confirmPassword } = signupData;
   const navigate = useNavigate();
-
+  const toast = useToast();
   const onChange = (e) => {
     setSignupData((prevState) => ({
       ...prevState,
@@ -55,14 +56,14 @@ export default function Signup() {
     setLoading(true);
     e.preventDefault();
     if (!(email && password)) {
-      // toast({
-      //   // title: 'Incomplete Entries',
-      //   // description: 'Please enter both email and password',
-      //   // status: 'error',
-      //   // duration: 2000,
-      //   // isClosable: true,
-      //   // position: 'top',
-      // });
+      toast({
+        title: 'Incomplete Entries',
+        description: 'Please enter all details',
+        status: 'error',
+        duration: 2000,
+        isClosable: true,
+        position: 'top',
+      });
       setLoading(false);
     }
 
@@ -98,6 +99,14 @@ export default function Signup() {
         setUserEmail(email);
         setUserName(response.data.name);
         setLoading(false);
+        toast({
+          title: 'Logged in successfully!',
+          // description: 'Please enter all details',
+          status: 'success',
+          duration: 2000,
+          isClosable: true,
+          position: 'top',
+        });
       } catch (error) {
         setLoading(false);
 
