@@ -1,26 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const DownloadButton = ({ data, fileName }) => {
-  const handleDownload = () => {
-    const jsonData = JSON.stringify(data);
-    const blob = new Blob([jsonData], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
+const DownloadButton = ({ fileUrl, fileName }) => {
+  const handleDownload = async () => {
+    try {
+      const response = await fetch(fileUrl);
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
 
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `${fileName}.json`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error('Error downloading the file:', error);
+    }
   };
 
   return <button onClick={handleDownload}>Download</button>;
 };
 
-export default DownloadButton;
-
 DownloadButton.propTypes = {
-  data: PropTypes.object.isRequired,
+  fileUrl: PropTypes.string.isRequired,
   fileName: PropTypes.string.isRequired,
 };
+
+export default DownloadButton;

@@ -87,27 +87,17 @@ export default function InputScan() {
         borderRadius={'0px'}
         boxShadow={'7px 7px 0px 0px #0B2447'}
         mb={'42px'}
-        p={'10px'}
+        p={'20px'}
       >
         <Text
           lineHeight={1.1}
-          fontSize={{ base: '5vw', md: '28px', lg: '32px' }}
+          fontSize={{ base: '5vw', md: '28px', lg: '40px' }}
           px={'4px'}
           borderRadius={'5px'}
           fontWeight={650}
           color={'aliceblue'}
         >
           Scans
-        </Text>
-        <Text
-          fontSize={{ base: '1.7vw', md: '1.1vw' }}
-          w={{ base: '90%', md: '65%' }}
-          lineHeight={1.1}
-          color={'white'}
-        >
-          Use custom scans leveraging best cybersecurity tools to get the most
-          easy-to-comprehend analysis of your sites and make your pen-testing
-          journey simplified.
         </Text>
       </Flex>
       <FormControl
@@ -117,7 +107,7 @@ export default function InputScan() {
         w={{ base: '90%', md: '80%' }}
         bg={'#356bd6'}
         borderRadius={'10px'}
-        py={'15px'}
+        py={'20px'}
         px={'30px'}
         gap={'20px'}
         border={'2px solid #000'}
@@ -128,11 +118,11 @@ export default function InputScan() {
           w={{ base: '32px' }}
           pos={'absolute'}
           top={'-5%'}
-          left={'-1.5%'}
+          left={'-1%'}
         />
         <Box>
           <Text
-            fontSize={{ base: '1.7vw', md: '2vw' }}
+            fontSize={{ base: '1.7vw', md: '1.8vw' }}
             fontWeight={600}
             color={'white'}
           >
@@ -140,7 +130,7 @@ export default function InputScan() {
           </Text>
           <FormLabel>
             <Text
-              fontSize={{ base: '0.8rem', md: '1rem', lg: '1.4vw' }}
+              fontSize={{ base: '0.8rem', md: '1rem', lg: '1.3vw' }}
               color={'white'}
               fontWeight={600}
             >

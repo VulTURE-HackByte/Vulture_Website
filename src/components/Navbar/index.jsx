@@ -12,6 +12,7 @@ import {
   Image,
   useColorModeValue,
   useDisclosure,
+  Avatar,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon, ChevronDownIcon } from '@chakra-ui/icons';
 import PropTypes from 'prop-types';
@@ -31,7 +32,7 @@ export default function Navbar() {
     navigate('/signup');
   };
 
-  const { isAuth, setUserEmail, setUserName, addAuth, removeAuth } =
+  const { isAuth, setUserEmail, setUserName, addAuth, removeAuth, userName } =
     useAuthStore((state) => ({
       isAuth: state.isAuth,
       userName: state.userName,
@@ -160,22 +161,33 @@ export default function Navbar() {
             </Button>
           </Flex>
         ) : (
-          <Button
-            as={'a'}
-            display={{ base: 'inline-flex' }}
-            fontSize={'sm'}
-            fontWeight={600}
-            color={'white'}
-            bg={'#356bd6'}
-            onClick={logout}
-            cursor={'pointer'}
-            _hover={{
-              bg: '#356bd6',
-            }}
-            border={'2px solid #000'}
-          >
-            Logout
-          </Button>
+          <Flex justify="center" align="center" gap="1.5rem">
+            <Avatar
+              name={userName}
+              bg="#356bd6"
+              onClick={() => {
+                navigate('/history');
+              }}
+              color="white"
+              cursor="pointer"
+            />
+            <Button
+              as={'a'}
+              display={{ base: 'inline-flex' }}
+              fontSize={'sm'}
+              fontWeight={600}
+              color={'white'}
+              bg={'#356bd6'}
+              onClick={logout}
+              cursor={'pointer'}
+              _hover={{
+                bg: '#356bd6',
+              }}
+              border={'2px solid #000'}
+            >
+              Logout
+            </Button>
+          </Flex>
         )}
       </Flex>
 

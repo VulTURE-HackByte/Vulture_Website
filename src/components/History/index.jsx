@@ -12,33 +12,65 @@ import {
   Td,
   Tbody,
 } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+// import { useState } from 'react';
+// import axios from 'axios';
 import DownloadButton from '../DownloadButton';
 
 const HistoryCard = () => {
-  const [history, setHistory] = useState([]);
-  useEffect(() => {
-    async function fetchHistory() {
-      let config = {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-          'Content-Type': 'application/json',
-        },
-      };
-      try {
-        const response = await axios.get(
-          'http://localhost:4444/api/history',
-          config
-        );
-        console.log(response.data);
-        setHistory(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchHistory();
-  }, []);
+  // const [history, setHistory] = useState([]);
+  const reports = [
+    {
+      _id: '1',
+      createdAt: '2024-04-07T01:48:04.020Z',
+      spyderRes: '../../src/assets/report1.pdf',
+    },
+    {
+      _id: '2',
+      createdAt: '2024-04-07T02:28:28.970Z',
+      spyderRes: '../../src/assets/report2.pdf',
+    },
+    {
+      _id: '3',
+      createdAt: '2024-04-07T4:12:54.503Z',
+      spyderRes: '../../src/assets/report3.pdf',
+    },
+    {
+      _id: '4',
+      createdAt: '2024-04-07T4:57:45.234Z',
+      spyderRes: '../../src/assets/report4.pdf',
+    },
+    {
+      _id: '5',
+      createdAt: '2024-04-07T6:32:34.634Z',
+      spyderRes: '../../src/assets/report5.pdf',
+    },
+    {
+      _id: '6',
+      createdAt: '2024-09-07T6:52:53.090Z',
+      spyderRes: '../../src/assets/report6.pdf',
+    },
+  ];
+  // useEffect(() => {
+  //   async function fetchHistory() {
+  //     let config = {
+  //       headers: {
+  //         Authorization: Bearer ${localStorage.getItem('token')},
+  //         'Content-Type': 'application/json',
+  //       },
+  //     };
+  //     try {
+  //       const response = await axios.get(
+  //         'http://localhost:4444/api/history',
+  //         config
+  //       );
+  //       console.log(response.data);
+  //       setHistory(response.data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
+  //   fetchHistory();
+  // }, []);
 
   return (
     <TableContainer w={'80%'} mx={'auto'}>
@@ -54,14 +86,16 @@ const HistoryCard = () => {
           </Tr>
         </Thead>
         <Tbody>
-          {history.map((scan) => (
+          {reports.map((scan) => (
             <Tr key={scan._id}>
               <Td color={'#000'} fontWeight={600}>
                 {scan.createdAt}
               </Td>
               <Td>
                 <DownloadButton
-                  data={scan.spyderRes}
+                  fileUrl={
+                    reports.find((report) => report._id === scan._id)?.spyderRes
+                  }
                   fileName={`File_${scan._id}`}
                 />
               </Td>

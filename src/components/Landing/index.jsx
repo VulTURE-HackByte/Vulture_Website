@@ -16,16 +16,16 @@ export default function Landing() {
     <Box>
       <Flex
         w={'100%'}
-        justify={'center'}
+        justify={'space-evenly'}
         flexDirection={{ base: 'column', md: 'row' }}
         align={'center'}
-        py={'40px'}
+        py={'15rem'}
         bg={'#fff'}
       >
-        <Stack w={{ base: '90%', md: '40%' }} gap={'20px'}>
+        <Stack w={{ base: '90%', md: '40%' }} gap={'30px'}>
           <Text
             lineHeight={1.1}
-            fontSize={{ base: '8vw', md: '36px', lg: '48px' }}
+            fontSize={{ base: '8vw', md: '50px', lg: '72px' }}
             fontWeight={650}
           >
             Navigating the digital landscape safely
@@ -39,7 +39,7 @@ export default function Landing() {
             as={'a'}
             mt={'10px'}
             display={{ base: 'inline-flex' }}
-            fontSize={'md'}
+            fontSize={'xl'}
             fontWeight={620}
             color={'white'}
             bg={'#356bd6'}
@@ -68,7 +68,9 @@ export default function Landing() {
             Perform Scans
           </Button>
         </Stack>
-        <Lottie animationData={animation} />
+        <Box w={'30%'}>
+          <Lottie animationData={animation} />
+        </Box>
       </Flex>
     </Box>
   );

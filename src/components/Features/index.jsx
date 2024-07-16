@@ -26,13 +26,13 @@ const FeatureCard = (props) => {
       w={{ base: '90%', md: '30%' }}
       bg={'#fff'}
       borderRadius={'10px'}
-      p={'15px'}
+      p={'30px 15px'}
       gap={'20px'}
       boxShadow={'0px 0px 28px 12px rgba(232,232,232,1)'}
       justify={'center'}
       textAlign={'center'}
     >
-      <Stack justify={'start'} align={'center'}>
+      <Stack justify={'start'} align={'center'} gap={'28px'}>
         <Image src={props.src} w={'100px'} h={'100px'} />
         <Text
           fontWeight={620}
@@ -45,6 +45,7 @@ const FeatureCard = (props) => {
         <Text
           fontWeight={350}
           fontSize={{ base: '3vw', md: '2vw', lg: '16px' }}
+          w={'75%'}
         >
           {props.desc}
         </Text>
